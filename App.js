@@ -5,11 +5,13 @@ import {configureStore} from './store';
 import ReduxForm from './components/LogIn/ReduxForm'
 import { createStore } from 'redux';
 import reducer from './reducers';
+import Form from './components/LogIn/ReduxForm';
 
 const store = createStore(reducer)
 
+
 export default App = () => (
   <Provider store={store}>
-    <ReduxForm/>
+    <Form />
   </Provider>
 );

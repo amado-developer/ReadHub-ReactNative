@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import login, * as loginSelectors from './login/index';
 
 const reducer = combineReducers({
     login,
+    formReducer,
 })
 
 export default reducer;

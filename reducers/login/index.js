@@ -4,7 +4,7 @@ import * as types from '../../types/logIn';
  const token = (state= null, action) => {
      switch(action.type){
          case types.LOGIN_STARTED:{
-            return null;
+            return action.payload.email;
          }
          case types.LOGIN_COMPLETED: {
              return action.payload.token

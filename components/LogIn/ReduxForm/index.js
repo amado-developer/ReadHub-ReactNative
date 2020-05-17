@@ -1,43 +1,57 @@
-import React, { useState } from 'react';
-import {StyleSheet , View, Text, TextInput, Button} from 'react-native';
-import { connect } from 'react-redux';
-import * as actions from '../../../actions/logIn'
-import * as selectors from '../../../reducers'
+import React from 'react'
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native'
+import { Field, reduxForm } from 'redux-form'
 
-const ReduxForm = ( {onPress, isLoading} ) => {
-  
-    return (
+const submit = values => {
+  console.log('submitting form', values)
+}
+
+const renderInput = ({ input: { onChange }}) => {
+  return <TextInput style={styles.input} onChange={() => onChange} />
+}
+
+
+const Form = props => {
+  const { handleSubmit } = props
+
+  return (
     <View style={styles.container}>
-    
-    <Text> {'It is loading: ' + isLoading} </Text>
-    <Button onPress={() => {
-      onPress();
-      } 
-    }
-    title="Press Me"/>
+      <Text>Email:</Text>
+      <Field name="email" component={renderInput} />
+      <TouchableOpacity onPress={handleSubmit(submit)}>
+        <Text style={styles.button}>Submit</Text>
+      </TouchableOpacity>
     </View>
-    )};
+  )
+}
+export default reduxForm({
+  form: 'test'
+})(Form)
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  });
-  
+  button: {
+    backgroundColor: 'blue',
+    color: 'white',
+    height: 30,
+    lineHeight: 30,
+    marginTop: 10,
+    textAlign: 'center',
+    width: 250
+  },
+  container: {
 
+  },
+  input: {
+    borderColor: 'black',
+    borderWidth: 1,
+    height: 37,
+    width: 250
+  }
+})
 
-
-export default connect(
-  state => ({
-    isLoading: selectors.getIsLogingIn(state)
-  }),
-
-  dispatch => ({
-    onPress(){
-      dispatch(actions.startLogin("hola", "adios"));
-    }
-  }),
-)(ReduxForm);
