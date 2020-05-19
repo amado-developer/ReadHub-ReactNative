@@ -38,9 +38,7 @@ const logIn = props => {
   const {login} = props;
 
   if (login.token !== null) {
-    sleep(2000).then(() => {
-      history.push('/test');
-    });
+    history.push('/test');
   } else if (login.error !== null) {
     sleep(2000).then(() => {
       Alert.alert('Error', 'Credentials Error');
