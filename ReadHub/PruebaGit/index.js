@@ -6,4 +6,6 @@ console.log('holaaaa');
 console.log('holaaaa');
 console.log('lolaso 1 2 4');
 
-const otraCosa = () => {};
+const otraCosa = () => {
+    console.log('holi :3')
+};
