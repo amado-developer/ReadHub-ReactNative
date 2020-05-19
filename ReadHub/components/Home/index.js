@@ -2,18 +2,16 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Button, Text, Alert} from 'react-native';
 import { connect } from 'react-redux';
+//Testing git pushes
 
-/*Probando esta cosa*/
-/*COn el live */
-
-const test = () =>{
-    return(
-    <View style={styles.container}>
-    <Button title="hahaha" />
-    <Text style={styles.container} >NO POS MIAU</Text>
-    </View>
-);
-};
+// const test = () =>{
+//     return(
+//     <View style={styles.container}>
+//     <Button title="hahaha" />
+//     <Text style={styles.container} >NO POS MIAU</Text>
+//     </View>
+// );
+// };
 
 const styles = StyleSheet.create({
     button: {
