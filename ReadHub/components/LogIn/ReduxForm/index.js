@@ -1,14 +1,17 @@
 import React from 'react';
-import {Field, reduxForm, SubmissionError} from 'redux-form';
-import {View, TextInput, StyleSheet, Button, Alert} from 'react-native';
+import {Field, reduxForm} from 'redux-form';
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  Alert,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import * as actions from '../../../actions/logIn';
 import {connect} from 'react-redux';
-
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-// const data = () => {
-
-// };
+//HOLI
 const renderInput = field => {
   return (
     <TextInput
@@ -28,6 +31,7 @@ const passwordRenderInput = field => {
       style={styles.input}
       secureTextEntry={true}
       placeholder=" Password"
+      placeholderStyle={styles.placeholder}
     />
   );
 };
@@ -40,23 +44,29 @@ const logIn = props => {
   if (login.token !== null) {
     history.push('/test');
   } else if (login.error !== null) {
-    sleep(2000).then(() => {
-      Alert.alert('Error', 'Credentials Error');
-      login.error = null;
-    });
+    Alert.alert('Error', 'Credentials Error');
+    login.error = null;
   }
 
   return (
     <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.image}
+          source={require('../../../Images/logo.png')}
+        />
+      </View>
       <Field name="email" component={renderInput} type="text" />
       <Field name="password" component={passwordRenderInput} type="text" />
-      <View style={styles.button}>
-        <Button
-          title="Submit"
+      <View>
+        <TouchableOpacity
+          style={styles.button}
+          color={'white'}
           onPress={handleSubmit(values => {
             dispatch(actions.startLogin(values.email, values.password));
-          })}
-        />
+          })}>
+          <Text>Log in</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -75,24 +85,33 @@ export default reduxForm({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'rebeccapurple',
-    color: 'white',
-    height: 40,
-    lineHeight: 30,
-    marginTop: 10,
-    textAlign: 'center',
-    width: 250,
-    marginLeft: 50,
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: 150,
+    borderRadius: 10,
+    marginLeft: 100,
   },
+
   container: {
-    marginTop: 300,
+    marginTop: 200,
+    marginLeft: 30,
   },
+
   input: {
     borderColor: 'black',
-    borderWidth: 1,
-    height: 37,
+    borderWidth: 0.5,
+    borderRadius: 5,
+    height: 50,
     width: 250,
     marginLeft: 50,
     marginBottom: 50,
+    color: '#010F78',
+  },
+
+  image: {
+    width: 250,
+    height: 100,
+    marginLeft: 55,
   },
 });
