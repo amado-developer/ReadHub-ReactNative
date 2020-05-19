@@ -4,14 +4,14 @@ import {View, TextInput, StyleSheet, Button, Text, Alert} from 'react-native';
 import { connect } from 'react-redux';
 //Testing git pushes
 
-// const test = () =>{
-//     return(
-//     <View style={styles.container}>
-//     <Button title="hahaha" />
-//     <Text style={styles.container} >NO POS MIAU</Text>
-//     </View>
-// );
-// };
+const test = () =>{
+    return (
+    <View style={styles.container}>
+    <Button title="hahaha" />
+    <Text style={styles.container} >NO POS MIAU</Text>
+    </View>
+);
+};
 
 const styles = StyleSheet.create({
     button: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
       marginTop: 10,
       textAlign: 'center',
       width: 250,
-      marginLeft : 50
+      marginLeft : 50,
     },
     container: {
       marginTop: 300,
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
       width: 250,
       marginLeft : 50,
       marginBottom: 50,
-    }
-  })
+    },
+  });
 export default connect()(test);
