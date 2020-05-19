@@ -11,10 +11,7 @@ import {
 } from 'react-native';
 import * as actions from '../../../actions/logIn';
 import {connect} from 'react-redux';
-//HOLI
-// weeeeeeeeeeeeeeeey nooooooooooooooooooo
-// probando 1,2,1,2,1,2,1,2,1,2,1,2
-// holi
+
 
 const renderInput = field => {
   return (
