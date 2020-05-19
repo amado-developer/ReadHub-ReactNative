@@ -12,7 +12,6 @@ import {
 import * as actions from '../../../actions/logIn';
 import {connect} from 'react-redux';
 
-
 const renderInput = field => {
   return (
     <TextInput
