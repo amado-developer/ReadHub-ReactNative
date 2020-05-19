@@ -7,5 +7,5 @@ console.log('holaaaa');
 console.log('lolaso 1 2 4');
 
 const otraCosa = () => {
-    console.log('holi :3')
+    console.log('holi :3');
 };
