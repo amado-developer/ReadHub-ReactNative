@@ -4,6 +4,7 @@ import {View, TextInput, StyleSheet, Button, Text, Alert} from 'react-native';
 import { connect } from 'react-redux';
 
 /*Probando esta cosa*/
+/*COn el live */
 
 const test = () =>{
     return(
