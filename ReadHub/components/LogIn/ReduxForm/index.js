@@ -42,7 +42,7 @@ const logIn = props => {
   const {login} = props;
 
   if (login.token !== null) {
-    history.push('/test');
+    history.push('/profile');
   } else if (login.error !== null) {
     Alert.alert('Error', 'Credentials Error');
     login.error = null;

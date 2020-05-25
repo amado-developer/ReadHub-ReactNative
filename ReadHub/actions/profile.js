@@ -1,13 +1,13 @@
 import * as types from '../types/profile';
 
-export const startUploadProfilePicture = image => ({
+export const startUploadProfilePicture = picture => ({
   type: types.UPLOAD_PROFILE_PICTURE_STARTED,
-  payload: {image},
+  payload: {picture},
 });
 
-export const completeUploadProfilePicture = image => ({
+export const completeUploadProfilePicture = picture => ({
   type: types.UPLOAD_PROFILE_PICTURE_COMPLETED,
-  payload: {image},
+  payload: {picture},
 });
 
 export const failUploadProfilePicture = error => ({

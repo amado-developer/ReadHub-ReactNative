@@ -6,18 +6,19 @@ import {NativeRouter, Switch, Route} from 'react-router-native';
 import {View} from 'react-native';
 import {configureStore} from './store';
 import reduxForm from './components/LogIn/ReduxForm';
-import test from './components/Home';
+import profilePicture from './components/ProfilePicture';
 const {store, persistor} = configureStore();
 
-export default App = () => (
+export default (App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <NativeRouter>
         <View>
           <Route path="/" exact component={reduxForm} />
-          <Route path="/test" component={test} />
+          <Route path="/profile" component={profilePicture} />
+          {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>
     </PersistGate>
   </Provider>
-);
+));

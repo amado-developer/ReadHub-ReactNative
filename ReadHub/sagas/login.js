@@ -24,8 +24,9 @@ function* login(action) {
       },
     });
     if (response.status === 200) {
+      const {email} = action.payload;
       const {token} = yield response.json();
-      yield put(actions.completeLogin(token));
+      yield put(actions.completeLogin(token, email));
     } else {
       const {non_field_errors} = yield response.json();
       yield put(actions.failLogin(non_field_errors[0]));

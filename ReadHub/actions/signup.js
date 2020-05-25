@@ -13,11 +13,11 @@ import * as types from '../types/signup'
     phone_number    = models.CharField(max_length=50, null=False)
     description     = models.CharField(max_length=50, null=True)
 */ 
-export const startSignup = (email, first_name, last_name, profile_pircture, age, gender, occupation,
+export const startSignup = (email, first_name, last_name,  age, gender, occupation,
     address_line1, address_line2, phone_number,password1, password2) => ({
 
     type: types.SIGNUP_STARTED,
-    payload: { email, first_name, last_name,profile_pircture, age, gender, occupation,
+    payload: { email, first_name, last_name, age, gender, occupation,
         address_line1, address_line2, phone_number, password1, password2 },
 });
 
