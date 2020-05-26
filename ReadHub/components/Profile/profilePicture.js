@@ -29,23 +29,24 @@ const getProfilePicture = (onUpload, onError) => {
     } else {
       // const source = {uri: response.uri};
       const source = {uri: 'data:image/jpeg;base64,' + response.data};
-      console.log(typeof response.data);
       onUpload(response);
     }
   });
 };
 
 const profilePicture = ({onUpload, onError, picture}) => {
-  // console.log(picture);
-  // picture === null ? (imageSource = '') : (imageSource = profilePicture);
   return (
     <View style={styles.mainContainer}>
       <View>
         {picture === null ? (
-          <Image style={styles.image} />
+          <Image
+            style={styles.image}
+            source={require('../../assets/default-picture.png')}
+          />
         ) : (
           <Image
             source={{
+              // uri: `http://192.168.1.5:8000${picture}`,
               uri: `http://10.0.2.2:8000${picture}`,
             }}
             style={styles.image}
@@ -59,18 +60,6 @@ const profilePicture = ({onUpload, onError, picture}) => {
           <Text style={styles.buttonText}>Update Profile Picture</Text>
         </TouchableOpacity>
       </View>
-      {/* <View>
-        <Text style={styles.text}> First Name </Text>
-        <Text style={styles.text}> Last Name </Text>
-        <Text style={styles.text}> Email </Text>
-        <Text style={styles.text}> Age </Text>
-        <Text style={styles.text}> Gender </Text>
-        <Text style={styles.text}> Occupation </Text>
-        <Text style={styles.text}> Address Line 1 </Text>
-        <Text style={styles.text}> Address Line 2 </Text>
-        <Text style={styles.text}> Phone number </Text>
-        <Text style={styles.text}> Description </Text>
-      </View> */}
     </View>
   );
 };

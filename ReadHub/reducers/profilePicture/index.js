@@ -55,7 +55,6 @@ const profilePicture = combineReducers({
   error,
 });
 
-
 export const getPicture = state => state.picture;
 export const getIsUploading = state => state.isUploading;
 export const getIsValid = state => state.isValid;

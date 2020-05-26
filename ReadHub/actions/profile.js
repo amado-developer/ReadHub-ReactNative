@@ -74,3 +74,17 @@ export const failChangeDescription = error => ({
   type: types.CHANGE_DESCRIPTION_FAILED,
   payload: {error},
 });
+
+export const startRetrieveProfile = () => ({
+  type: types.RETRIEVE_PROFILE_STARTED,
+});
+
+export const completeRetrieveProfile = info => ({
+  type: types.RETRIEVE_PROFILE_COMPLETED,
+  payload: {info},
+});
+
+export const failRetrieveProfile = error => ({
+  type: types.RETRIEVE_PROFILE_FAILED,
+  payload: {error},
+});

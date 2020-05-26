@@ -10,7 +10,9 @@ import {
 
 import * as selectors from '../reducers';
 import * as types from '../types/profile';
+import * as loginTypes from '../types/logIn';
 import * as actions from '../actions/profile';
+// const API_BASE_URL = 'http://192.168.1.5:8000/api/v1';
 const API_BASE_URL = 'http://10.0.2.2:8000/api/v1';
 import RNFetchBlob from 'react-native-fetch-blob';
 
@@ -19,7 +21,8 @@ function* uploadProfilePicture(action) {
   if (isLogged) {
     const token = yield select(selectors.getToken);
     const id = yield select(selectors.getUserId);
-    RNFetchBlob.fetch(
+
+    yield RNFetchBlob.fetch(
       'PATCH',
       `${API_BASE_URL}/users/upload-profile-picture/${id}/`,
       {
@@ -33,9 +36,7 @@ function* uploadProfilePicture(action) {
           data: action.payload.picture.data,
         },
       ],
-    ).catch(err => {
-      put(actions.failUploadProfilePicture(err));
-    });
+    );
 
     const imageResponse = yield call(fetch, `${API_BASE_URL}/users/${id}/`, {
       method: 'GET',
@@ -51,6 +52,37 @@ function* uploadProfilePicture(action) {
   }
 }
 
+function* getInitialProfilePicture(action) {
+  const token = yield select(selectors.getToken);
+  const id = yield select(selectors.getUserId);
+  const imageResponse = yield call(fetch, `${API_BASE_URL}/users/${id}/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${token}`,
+    },
+  });
+
+  const jsonResult = yield imageResponse.json();
+  const profilePicture = jsonResult.profile_picture;
+  yield put(actions.completeUploadProfilePicture(profilePicture));
+
+  const infoResponse = yield call(fetch, `${API_BASE_URL}/users/${id}/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${token}`,
+    },
+  });
+  const jsonInfoResult = yield infoResponse.json();
+  // console.log(jsonInfoResult);
+  yield put(actions.completeRetrieveProfile(jsonInfoResult));
+}
+
 export function* watchProfilePictureUploaded() {
   yield takeEvery(types.UPLOAD_PROFILE_PICTURE_STARTED, uploadProfilePicture);
+}
+
+export function* watchLoginCompleted() {
+  yield takeEvery(loginTypes.LOGIN_COMPLETED, getInitialProfilePicture);
 }

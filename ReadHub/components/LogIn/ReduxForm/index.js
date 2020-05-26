@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import * as actions from '../../../actions/logIn';
+
 import {connect} from 'react-redux';
 
 const renderInput = field => {
@@ -35,19 +36,47 @@ const passwordRenderInput = field => {
     />
   );
 };
+
+async function checkLogIn(login, history) {
+  await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+  if (login.token !== null) {
+    history.push('/profile');
+  } else if (login.error !== null) {
+    Alert.alert('Error', login.error);
+    login.error = null;
+  }
+}
 const logIn = props => {
   const {handleSubmit} = props;
   const {dispatch} = props;
   const {history} = props;
   const {login} = props;
 
-  if (login.token !== null) {
-    history.push('/profile');
-  } else if (login.error !== null) {
-    Alert.alert('Error', 'Credentials Error');
-    login.error = null;
+  checkLogIn(login, history);
+  if (login.token === null) {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Image
+            style={styles.image}
+            source={require('../../../Images/logo.png')}
+          />
+        </View>
+        <Field name="email" component={renderInput} type="text" />
+        <Field name="password" component={passwordRenderInput} type="text" />
+        <View>
+          <TouchableOpacity
+            style={styles.button}
+            color={'white'}
+            onPress={handleSubmit(values => {
+              dispatch(actions.startLogin(values.email, values.password));
+            })}>
+            <Text>Log in</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
   }
-
   return (
     <View style={styles.container}>
       <View>
@@ -55,18 +84,6 @@ const logIn = props => {
           style={styles.image}
           source={require('../../../Images/logo.png')}
         />
-      </View>
-      <Field name="email" component={renderInput} type="text" />
-      <Field name="password" component={passwordRenderInput} type="text" />
-      <View>
-        <TouchableOpacity
-          style={styles.button}
-          color={'white'}
-          onPress={handleSubmit(values => {
-            dispatch(actions.startLogin(values.email, values.password));
-          })}>
-          <Text>Log in</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

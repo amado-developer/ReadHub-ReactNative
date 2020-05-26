@@ -3,11 +3,12 @@ import {reducer as formReducer} from 'redux-form';
 import login, * as loginSelectors from './login';
 import signup, * as signupSelectors from './signup';
 import profilePicture, * as profilePictureSelectors from './profilePicture';
-
+import profile, * as profileSelectors from './profile';
 const reducer = combineReducers({
   login,
   signup,
   profilePicture,
+  profile,
   form: formReducer,
 });
 
@@ -35,3 +36,6 @@ export const getProfilePictureIsUploading = state =>
   profilePictureSelectors.getIsUploading(state.profilePicture);
 export const getProfilePictureError = state =>
   profilePictureSelectors.getError(state.profilePicture);
+export const getProfileInfo = state => profileSelectors.getInfo(state.profile);
+export const getIsRetrieving = state => profileSelectors.getIsRetrieving(state.profile);
+export const getProfileError = state => profileSelectors.getError(state.profile);
