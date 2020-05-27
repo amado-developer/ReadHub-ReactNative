@@ -7,7 +7,9 @@ import {View} from 'react-native';
 import {configureStore} from './store';
 import reduxForm from './components/LogIn/ReduxForm';
 import profile from './components/Profile';
-import profilePIcture from './components/Profile/profilePicture';
+import home from './components/Home';
+import bookStore from './components/BookStore';
+
 const {store, persistor} = configureStore();
 
 export default (App = () => (
@@ -17,6 +19,8 @@ export default (App = () => (
         <View>
           <Route path="/" exact component={reduxForm} />
           <Route path="/profile" component={profile} />
+          <Route path="/home" component={home} />
+          <Route path="/books" component={bookStore} />
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>

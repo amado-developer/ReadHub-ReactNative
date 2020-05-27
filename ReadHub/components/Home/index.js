@@ -14,21 +14,23 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
-  
+  Keyboard,
+
 } from 'react-native';
 
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-native';
 
 
-const Home = () => {
+
+const home = withRouter( props => {
+  const {history} = props;
   return (
- 
        <ScrollView >
           <View  style={styles.container} >
             <Image
               style={styles.image}
-              source={require('./Images/logo.png')}
+              source={require('../../Images/logo.png')}
             />
           </View>
 
@@ -44,27 +46,27 @@ const Home = () => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.button} onPress={()=> history.push('/books')}>
                 <Text style={styles.text}>
-                    Comprar un libro
+                    Buy Books
                  </Text>
-  
-                 <Image 
+
+                 <Image
                     style={styles.imageIcon}
-                    source={require("./Images/Comprar.png")}
+                    source={require('../../Images/Comprar.png')}
                     />
                 </TouchableOpacity>
 
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
               <Text style={styles.text2}>
                 Prestar un libro
               </Text>
-               <Image 
+               <Image
                 style={styles.imageIconRight}
-                source={require("./Images/prestarLibro.png")}
+                source={require('../../Images/prestarLibro.png')}
                />
             </TouchableOpacity>
             </View>
@@ -82,27 +84,27 @@ const Home = () => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{alert('you clicked me');}}>
                 <Text style={styles.text}>
                     Reservar salon
                  </Text>
-  
-                 <Image 
+
+                 <Image
                     style={styles.imageIcon}
-                    source={require("./Images/esta.png")}
+                    source={require('../../Images/esta.png')}
                     />
                 </TouchableOpacity>
 
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
               <Text style={styles.text3}>
                 Solicitar Equipo
               </Text>
-               <Image 
+               <Image
                 style={styles.imageIconRight}
-                source={require("./Images/images.png")}
+                source={require('../../Images/images.png')}
                />
             </TouchableOpacity>
             </View>
@@ -119,49 +121,56 @@ const Home = () => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.button} onPress={()=>{alert('you clicked me');}}>
                 <Text style={styles.text}>
                     Comprar revistas
                  </Text>
-  
-                 <Image 
+
+                 <Image
                     style={styles.imageIconMagazine}
-                    source={require("./Images/magazine.png")}
+                    source={require('../../Images/magazine.png')}
                     />
                 </TouchableOpacity>
 
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert("you clicked me")}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
               <Text style={styles.text2}>
-                Prestar un libro
+                Profile
               </Text>
-               <Image 
+               <Image
                 style={styles.imageIconRight}
-                source={require("./Images/prestarLibro.png")}
+                source={require('../../Images/profile.jpeg')}
                />
             </TouchableOpacity>
             </View>
           </View>
-        
+
         </ScrollView>
 
-  )
+  );
+});
+
+const mapStateToProps = state =>{
+  return state;
 };
+
+export default connect(mapStateToProps)(home);
+
 
 const styles = StyleSheet.create({
   buttonRight:{
     height: 250,
     width: 160,
     marginTop:40,
-    marginLeft: 5
+    marginLeft: 5,
   },
   imageIconMagazine:{
     height:150,
     width: 150,
     borderRadius: 20,
-    marginLeft: 5
+    marginLeft: 5,
 
   },
 
@@ -174,39 +183,39 @@ const styles = StyleSheet.create({
     height:150,
     width: 150,
     marginTop: 5,
-    marginLeft: 15
+    marginLeft: 15,
 
   },
   text:{
-    fontFamily: "Cochin",
+    fontFamily: 'Cochin',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: 0,
-    marginBottom: 5
-    
+    marginBottom: 5,
+
   },
   text2:{
-    fontFamily: "Cochin",
+    fontFamily: 'Cochin',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 10,
-    marginLeft: 20
-    
+    marginLeft: 20,
+
   },
   text3:{
-    fontFamily: "Cochin",
+    fontFamily: 'Cochin',
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginLeft: 20,
-    textAlign: 'center'
-    
+    textAlign: 'center',
+
   },
-  
-  
+
+
   imageIcon:{
     height:150,
     width: 150,
-    borderRadius: 45
+    borderRadius: 45,
   },
 
   button: {
@@ -220,7 +229,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 100,
     //marginRight:500,
-    //backgroundColor : 'blue'  
+    //backgroundColor : 'blue'
   },
     container: {
     //backgroundColor: 'red',
@@ -229,8 +238,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
    // backgroundColor: 'red'
   },
-  
+
 
 });
 
-export default Home;

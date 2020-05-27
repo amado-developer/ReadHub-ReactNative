@@ -12,8 +12,8 @@ import {
 import * as actions from '../actions/logIn';
 import * as types from '../types/logIn';
 
-// const API_BASE_URL = 'http://192.168.1.5:8000/api';
-const API_BASE_URL = 'http://10.0.2.2:8000/api';
+const API_BASE_URL = 'http://192.168.1.5:8000/api';
+// const API_BASE_URL = 'http://10.0.2.2:8000/api';
 
 function* login(action) {
   try {

@@ -4,11 +4,13 @@ import login, * as loginSelectors from './login';
 import signup, * as signupSelectors from './signup';
 import profilePicture, * as profilePictureSelectors from './profilePicture';
 import profile, * as profileSelectors from './profile';
+import digitalBooks, * as digitalBooksSelectors from './bookStore/digitalBooks';
 const reducer = combineReducers({
   login,
   signup,
   profilePicture,
   profile,
+  digitalBooks,
   form: formReducer,
 });
 
@@ -37,5 +39,17 @@ export const getProfilePictureIsUploading = state =>
 export const getProfilePictureError = state =>
   profilePictureSelectors.getError(state.profilePicture);
 export const getProfileInfo = state => profileSelectors.getInfo(state.profile);
-export const getIsRetrieving = state => profileSelectors.getIsRetrieving(state.profile);
-export const getProfileError = state => profileSelectors.getError(state.profile);
+export const getIsRetrieving = state =>
+  profileSelectors.getIsRetrieving(state.profile);
+export const getProfileError = state =>
+  profileSelectors.getError(state.profile);
+
+//Digital books SELECTORS
+export const getDigitalBook = (state, id) =>
+  digitalBooksSelectors.getPetOwner(state.digitalBooks, id);
+export const getDigitalBooks = state =>
+  digitalBooksSelectors.getPetOwners(state.digitalBooks);
+export const isFetchingDigitalBooks = state =>
+  digitalBooksSelectors.isFetchingPetOwners(state.digitalBooks);
+export const getDigitalBooksError = state =>
+  digitalBooksSelectors.getFetchingPetOwnersError(state.digitalBooks);

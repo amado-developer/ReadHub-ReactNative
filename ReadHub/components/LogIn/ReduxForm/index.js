@@ -40,7 +40,7 @@ const passwordRenderInput = field => {
 async function checkLogIn(login, history) {
   await new Promise((resolve, reject) => setTimeout(resolve, 1000));
   if (login.token !== null) {
-    history.push('/profile');
+    history.push('/home');
   } else if (login.error !== null) {
     Alert.alert('Error', login.error);
     login.error = null;
