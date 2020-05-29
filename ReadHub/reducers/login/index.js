@@ -53,11 +53,10 @@ const decoded = (state = null, action) => {
       return null;
     }
     case types.LOGIN_COMPLETED: {
-      console.log('El peiloud: ' + action.payload);
       return jwtDecode(action.payload.token);
     }
     case types.TOKEN_REFRESH_COMPLETED: {
-      console.log('SI LLEGA?', jwtDecode(action.payload.newToken));
+      // console.log('SI LLEGA?', jwtDecode(action.payload.newToken));
       return jwtDecode(action.payload.newToken);
     }
     case types.LOGIN_FAILED: {

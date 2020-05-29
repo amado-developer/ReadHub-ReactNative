@@ -6,8 +6,17 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Image,
+  ScrollView,
 } from 'react-native';
 import {Field, reduxForm} from 'redux-form';
+import * as actions from '../../actions/bookStore';
+import Book from './digitalBook';
+
+const searchValue = {vale: ''};
+const search = event => {
+  searchValue.value = event;
+};
 
 const renderInput = field => {
   return (
@@ -20,25 +29,39 @@ const renderInput = field => {
   );
 };
 
-const bookStore = props => {
+const searchForm = props => {
+  console.log(searchValue)
+  const {digitalBooks} = props;
+  const {handleSubmit} = props;
+  const {dispatch} = props;
   return (
-    <View>
+    <ScrollView style={styles.screen}>
+      <Image source={require('../../Images/logo.png')} style={styles.logo} />
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
-        <TouchableOpacity style={styles.button} color={'white'}>
-          <Text>Search</Text>
+        <TouchableOpacity
+          style={styles.button}
+          color={'white'}
+          onPress={handleSubmit(values => {
+            dispatch(actions.startRetrieveBooks(values.search));
+          })}>
+          <Text style={styles.searchButtonText}>Search</Text>
         </TouchableOpacity>
       </View>
-    </View>
+      <View style={styles.booksContainer}>
+        {digitalBooks.order.map(id => (
+          <Book key={id} id={id} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return state;
 };
 
-const decoratedComponent = connect(mapStateToProps)(bookStore);
+const decoratedComponent = connect(mapStateToProps)(searchForm);
 
 export default reduxForm({
   form: 'searchBook',
@@ -47,17 +70,24 @@ export default reduxForm({
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    borderColor: 'black',
+    borderWidth: 0.5,
+    backgroundColor: 'black',
     padding: 10,
     width: 150,
     borderRadius: 10,
     position: 'relative',
     left: 235,
   },
+
+  searchButtonText: {
+    color: 'white',
+  },
   input: {
     borderColor: 'black',
     borderWidth: 0.5,
     borderRadius: 5,
+    backgroundColor: 'white',
     height: 50,
     width: 385,
     marginBottom: 10,
@@ -65,6 +95,16 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     marginLeft: 10,
-    marginTop: 40,
+  },
+
+  screen: {
+    backgroundColor: 'white',
+  },
+
+  logo: {
+    marginTop: 20,
+    marginLeft: 50,
+    width: 300,
+    height: 100,
   },
 });

@@ -1,7 +1,8 @@
 import * as types from '../types/bookStore';
 
-export const startRetrieveBooks = () => ({
+export const startRetrieveBooks = bookName => ({
   type: types.RETRIEVING_STARTED,
+  payload: {bookName},
 });
 
 export const completeRetrieveBooks = (entities, order) => ({
@@ -11,18 +12,7 @@ export const completeRetrieveBooks = (entities, order) => ({
     order,
   },
 });
-
 export const failRetrieveBooks = error => ({
   type: types.RETRIEVING_FAILED,
   payload: {error},
-});
-
-export const addToCart = books => ({
-  type: types.ADDING_TO_CART,
-  payload: {books},
-});
-
-export const remoteFromCart = book => ({
-  type: types.REMOVING_FROM_CART,
-  payload: {book},
 });

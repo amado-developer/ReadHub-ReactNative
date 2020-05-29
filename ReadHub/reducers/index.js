@@ -5,12 +5,14 @@ import signup, * as signupSelectors from './signup';
 import profilePicture, * as profilePictureSelectors from './profilePicture';
 import profile, * as profileSelectors from './profile';
 import digitalBooks, * as digitalBooksSelectors from './bookStore/digitalBooks';
+import cart, * as cartSelectors from './cart';
 const reducer = combineReducers({
   login,
   signup,
   profilePicture,
   profile,
   digitalBooks,
+  cart,
   form: formReducer,
 });
 
@@ -46,10 +48,15 @@ export const getProfileError = state =>
 
 //Digital books SELECTORS
 export const getDigitalBook = (state, id) =>
-  digitalBooksSelectors.getPetOwner(state.digitalBooks, id);
+  digitalBooksSelectors.getDigitalBook(state.digitalBooks, id);
 export const getDigitalBooks = state =>
-  digitalBooksSelectors.getPetOwners(state.digitalBooks);
+  digitalBooksSelectors.getDigitalBooks(state.digitalBooks);
 export const isFetchingDigitalBooks = state =>
-  digitalBooksSelectors.isFetchingPetOwners(state.digitalBooks);
+  digitalBooksSelectors.isFetchingDigitalBooks(state.digitalBooks);
 export const getDigitalBooksError = state =>
-  digitalBooksSelectors.getFetchingPetOwnersError(state.digitalBooks);
+  digitalBooksSelectors.getError(state.digitalBooks);
+
+export const getOrderedBooks = state =>
+  digitalBooksSelectors.getOrderedBooks(state.digitalBooks);
+//Cart SELECTORS
+export const getCart = state => cartSelectors.getCart(state.cart);

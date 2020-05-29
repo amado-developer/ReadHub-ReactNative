@@ -90,7 +90,6 @@ const logIn = props => {
 };
 
 const mapStateToProps = state => {
-  //console.log(state);
   return state;
 };
 

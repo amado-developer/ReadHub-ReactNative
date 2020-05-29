@@ -15,7 +15,6 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-
 } from 'react-native';
 
 import {connect} from 'react-redux';

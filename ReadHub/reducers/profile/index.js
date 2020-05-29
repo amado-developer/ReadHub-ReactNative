@@ -3,8 +3,8 @@ import * as types from '../../types/profile';
 
 const info = (state = null, action) => {
   try {
-    console.log('Type: ' + action.type);
-    console.log('Payload: ' + action.payload.info.first_name);
+    // console.log('Type: ' + action.type);
+    // console.log('Payload: ' + action.payload.info.first_name);
   } catch (error) {}
 
   switch (action.type) {

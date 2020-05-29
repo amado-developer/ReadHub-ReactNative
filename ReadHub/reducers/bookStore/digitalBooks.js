@@ -9,10 +9,12 @@ const byId = (state = {}, action) => {
       order.forEach(id => {
         newState[id] = {
           ...entities[id],
-          isConfirmed: true,
         };
       });
       return newState;
+    }
+    case types.RETRIEVING_STARTED: {
+      return {};
     }
     default: {
       return state;
@@ -24,6 +26,9 @@ const order = (state = [], action) => {
   switch (action.type) {
     case types.RETRIEVING_COMPLETED: {
       return [...state, ...action.payload.order];
+    }
+    case types.RETRIEVING_STARTED: {
+      return [];
     }
   }
   return state;
@@ -62,6 +67,7 @@ const error = (state = null, action) => {
     }
   }
 };
+
 export default combineReducers({
   byId,
   order,
@@ -72,5 +78,6 @@ export default combineReducers({
 export const getDigitalBook = (state, id) => state.byId[id];
 export const getDigitalBooks = state =>
   state.order.map(id => getDigitalBook(state, id));
+export const getOrderedBooks = state => state.order;
 export const isFetchingDigitalBooks = state => state.isFetching;
 export const getError = state => state.error;
