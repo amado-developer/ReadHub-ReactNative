@@ -5,7 +5,7 @@ export const addToCart = books => ({
   payload: {books},
 });
 
-export const remoteFromCart = book => ({
+export const removeFromCart = books => ({
   type: types.REMOVING_FROM_CART,
-  payload: {book},
+  payload: {books},
 });

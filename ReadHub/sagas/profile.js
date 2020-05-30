@@ -7,14 +7,16 @@ import {
   delay,
   select,
 } from 'redux-saga/effects';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 import * as selectors from '../reducers';
 import * as types from '../types/profile';
 import * as loginTypes from '../types/logIn';
 import * as actions from '../actions/profile';
+
 const API_BASE_URL = 'http://192.168.1.5:8000/api/v1';
 // const API_BASE_URL = 'http://10.0.2.2:8000/api/v1';
-import RNFetchBlob from 'react-native-fetch-blob';
+
 
 function* uploadProfilePicture(action) {
   const isLogged = yield select(selectors.isAuthenticated);

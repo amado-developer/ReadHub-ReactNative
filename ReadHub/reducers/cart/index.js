@@ -1,31 +1,20 @@
 import {combineReducers} from 'redux';
 import * as types from '../../types/cart';
 
-const byId = (state = {}, action) => {
-  console.log('al menos si llega a by id: ' + action.type);
+const cart = (state = [], action) => {
   switch (action.type) {
     case types.ADDING_TO_CART: {
-      return [];
+      return [...state, action.payload.books];
     }
-  }
-  return state;
-};
-
-const order = (state = [], action) => {
-  console.log('al menos si llega a by order');
-  switch (action.type) {
-    case types.ADDING_TO_CART: {
-      return [];
+    case types.REMOVING_FROM_CART: {
+      return [...state].filter(index => index !== action.payload.books);
     }
   }
   return state;
 };
 
 export default combineReducers({
-  byId,
-  order,
+  cart,
 });
 
-export const getCartElement = (state, id) => state.byId[id];
-export const getCart = state =>
-  state.order.map(id => getCartElement(state, id));
+export const getCart = state => state.cart;

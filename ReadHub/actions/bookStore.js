@@ -16,3 +16,18 @@ export const failRetrieveBooks = error => ({
   type: types.RETRIEVING_FAILED,
   payload: {error},
 });
+
+export const startBuyingBook = books => ({
+  type: types.BUYING_COMPLETED,
+  payload: {books},
+});
+
+export const completeBuyingBook = books => ({
+  type: types.BUYING_COMPLETED,
+  payload: {books},
+});
+
+export const failBuyBook = error => ({
+  type: types.BUYING_FAILED,
+  payload: {error},
+});

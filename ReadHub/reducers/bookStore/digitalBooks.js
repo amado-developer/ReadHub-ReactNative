@@ -68,11 +68,20 @@ const error = (state = null, action) => {
   }
 };
 
+const digitalBooksCollection = (state = [], action) => {
+  switch (action.type) {
+    case types.BUYING_COMPLETED: {
+      return [...state, action.payload.books];
+    }
+  }
+};
+
 export default combineReducers({
   byId,
   order,
   isFetching,
   error,
+  digitalBooksCollection,
 });
 
 export const getDigitalBook = (state, id) => state.byId[id];
@@ -81,3 +90,4 @@ export const getDigitalBooks = state =>
 export const getOrderedBooks = state => state.order;
 export const isFetchingDigitalBooks = state => state.isFetching;
 export const getError = state => state.error;
+export const getDigitalBooksCollection = state => state.digitalBooksCollection;

@@ -8,15 +8,12 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Alert,
 } from 'react-native';
 import {Field, reduxForm} from 'redux-form';
 import * as actions from '../../actions/bookStore';
+import * as selectors from '../../reducers';
 import Book from './digitalBook';
-
-const searchValue = {vale: ''};
-const search = event => {
-  searchValue.value = event;
-};
 
 const renderInput = field => {
   return (
@@ -30,15 +27,18 @@ const renderInput = field => {
 };
 
 const searchForm = props => {
-  console.log(searchValue)
   const {digitalBooks} = props;
   const {handleSubmit} = props;
   const {dispatch} = props;
+  const {profile} = props;
   return (
     <ScrollView style={styles.screen}>
       <Image source={require('../../Images/logo.png')} style={styles.logo} />
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
+        <TouchableOpacity style={styles.buyButton} onPress={() => buy(props)}>
+          <Text>Buy</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           color={'white'}
@@ -47,6 +47,10 @@ const searchForm = props => {
           })}>
           <Text style={styles.searchButtonText}>Search</Text>
         </TouchableOpacity>
+        <Text style={styles.balanceText}>
+          {'Current Balance: $' + profile.info.balance}
+        </Text>
+        <Text style={styles.totalAmmount}>{getTotal(props)}</Text>
       </View>
       <View style={styles.booksContainer}>
         {digitalBooks.order.map(id => (
@@ -55,6 +59,22 @@ const searchForm = props => {
       </View>
     </ScrollView>
   );
+};
+
+const buy = props => {
+  
+};
+const getTotal = props => {
+  const {cart} = props.cart;
+  const {digitalBooks} = props;
+
+  if (cart.length > 0) {
+    const price = cart.map(id => digitalBooks.byId[1].price);
+    const total = price.reduce((a, b) => {
+      return parseFloat(a) + parseFloat(b);
+    });
+    return `Total: ${total}`;
+  }
 };
 
 const mapStateToProps = state => {
@@ -68,6 +88,20 @@ export default reduxForm({
 })(decoratedComponent);
 
 const styles = StyleSheet.create({
+  totalAmmount: {
+    fontSize: 35,
+    fontFamily: 'Book Antiqua',
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginLeft: 3,
+  },
+  balanceText: {
+    fontSize: 35,
+    fontFamily: 'Book Antiqua',
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+
   button: {
     alignItems: 'center',
     borderColor: 'black',
@@ -76,8 +110,17 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 150,
     borderRadius: 10,
-    position: 'relative',
-    left: 235,
+    marginLeft: 10,
+  },
+
+  buyButton: {
+    alignItems: 'center',
+    width: 150,
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginLeft: 75,
   },
 
   searchButtonText: {
@@ -95,6 +138,9 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     marginLeft: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 
   screen: {

@@ -26,7 +26,6 @@ function* searchBooks(action) {
   try {
     const isAuth = yield select(selectors.isAuthenticated);
     const isFetching = yield select(selectors.isFetchingDigitalBooks);
-    console.log('si esta fetcheando we: ' + isFetching);
     if (isAuth && isFetching) {
       const token = yield select(selectors.getToken);
       const response = yield call(

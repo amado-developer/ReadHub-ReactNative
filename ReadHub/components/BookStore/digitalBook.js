@@ -40,23 +40,32 @@ const digitalBook = ({
           <Text style={styles.detail}>Author: {author}</Text>
           <Text style={styles.detail}>Language: {language}</Text>
           <Text style={styles.detail}>Edition: {edition}</Text>
-          <Text style={styles.detail}>Price: ${price}</Text>
           <Text style={styles.detail}>Publisher: {publisher}la</Text>
           <Text style={styles.detail}>DOI: {doi}</Text>
           <Text style={styles.detail}>Release Date: {release_date}</Text>
-          <TouchableOpacity style={styles.button} onPress={onPress}>
-            <View style={styles.addToCartContainer}>
-              <View style={styles.icon}>
-                <Image
-                  source={require('../../Images/cartIcon.png')}
-                  style={styles.cartIcon}
-                />
+          <Text style={styles.detail}>Price: ${price}</Text>
+
+          {!cart.includes(id) ? (
+            <TouchableOpacity style={styles.button} onPress={() => onPress()}>
+              <View style={styles.addToCartContainer}>
+                <View style={styles.icon}>
+                  <Image
+                    source={require('../../Images/cartIcon.png')}
+                    style={styles.cartIcon}
+                  />
+                </View>
+                <View>
+                  <Text style={styles.buttonText}>Add to cart</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.buttonText}>Add to cart</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={styles.removeButton}
+              onPress={() => onRemove()}>
+              <Text style={styles.removeText}>Remove from cart</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
@@ -73,7 +82,7 @@ export default connect(
       dispatch(cartActions.addToCart(id));
     },
     onRemove() {
-      dispatch(cartActions.remoteFromCart(id));
+      dispatch(cartActions.removeFromCart(id));
     },
   }),
 )(digitalBook);

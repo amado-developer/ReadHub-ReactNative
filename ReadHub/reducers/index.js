@@ -56,6 +56,9 @@ export const isFetchingDigitalBooks = state =>
 export const getDigitalBooksError = state =>
   digitalBooksSelectors.getError(state.digitalBooks);
 
+export const getDigitalBooksCollection = state =>
+  digitalBooksSelectors.getDigitalBooksCollection(state.digitalBooks);
+
 export const getOrderedBooks = state =>
   digitalBooksSelectors.getOrderedBooks(state.digitalBooks);
 //Cart SELECTORS
