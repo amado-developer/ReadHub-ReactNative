@@ -56,10 +56,49 @@ function* searchBooks(action) {
       }
     }
   } catch (error) {
+    yield put(actions.failRetrieveBooks(error));
+  }
+}
+
+function* buyBooks(action) {
+  try {
+    const isAuth = yield select(selectors.isAuthenticated);
+    const userId = yield select(selectors.getUserId);
+    if (isAuth) {
+      const body = {user: userId, books: action.payload.books};
+      console.log(JSON.stringify(body));
+      const token = yield select(selectors.getToken);
+      const cart = yield select(selectors.getCart);
+      const response = yield call(
+        fetch,
+        `${API_BASE_URL}/collections/add-to-collection/`,
+        {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `JWT ${token}`,
+          },
+        },
+      );
+
+      if (response.status === 200) {
+        const jsonResult = yield response.json();
+        yield put(actions.completeBuyingBook(action.payload));
+      } else {
+        const {non_field_errors} = yield response.json();
+        yield put(actions.failRetrieveBooks(non_field_errors[0]));
+      }
+    }
+  } catch (error) {
     console.log(error);
   }
 }
 
 export function* watchBookFetching() {
   yield takeEvery(types.RETRIEVING_STARTED, searchBooks);
+}
+
+export function* watchBookBuying() {
+  yield takeEvery(types.BUYING_STARTED, buyBooks);
 }

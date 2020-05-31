@@ -5,14 +5,19 @@ import signup, * as signupSelectors from './signup';
 import profilePicture, * as profilePictureSelectors from './profilePicture';
 import profile, * as profileSelectors from './profile';
 import digitalBooks, * as digitalBooksSelectors from './bookStore/digitalBooks';
-import cart, * as cartSelectors from './cart';
+import magazines, * as magazineSelectors from './magazineStore';
+import bookCart, * as bookCartSelectors from './bookCart';
+import magazineCart, * as magazineCartSelectors from './magazineCart/index';
+
 const reducer = combineReducers({
   login,
   signup,
   profilePicture,
   profile,
   digitalBooks,
-  cart,
+  magazines,
+  bookCart,
+  magazineCart,
   form: formReducer,
 });
 
@@ -61,5 +66,27 @@ export const getDigitalBooksCollection = state =>
 
 export const getOrderedBooks = state =>
   digitalBooksSelectors.getOrderedBooks(state.digitalBooks);
-//Cart SELECTORS
-export const getCart = state => cartSelectors.getCart(state.cart);
+
+  
+//Book Cart SELECTORS
+export const getCart = state => bookCartSelectors.getCart(state.bookCart);
+
+//Magazines SELECTORS
+export const getMagazine = (state, id) =>
+  magazineSelectors.getMagazine(state.magazines, id);
+export const getMagazines = state =>
+  magazineSelectors.getMagazines(state.magazines);
+export const isFetchingMagazines = state =>
+  magazineSelectors.isFetchingMagazines(state.magazines);
+export const getMagazinesError = state =>
+  magazineSelectors.getError(state.magazines);
+
+export const getMagazinesCollection = state =>
+  magazineSelectors.getMagazineCollection(state.magazines);
+
+export const getOrderedMagazines = state =>
+  magazineSelectors.getOrderedMagazines(state.magazines);
+
+//Magaine Cart SELECTORS
+export const getMagazineCart = state => magazineCartSelectors.getCart(state.magazineCart)
+

@@ -9,6 +9,7 @@ import reduxForm from './components/LogIn/ReduxForm';
 import profile from './components/Profile';
 import home from './components/Home';
 import bookStore from './components/BookStore';
+import MagazineStore from './components/MagazineStore';
 
 const {store, persistor} = configureStore();
 
@@ -21,6 +22,7 @@ export default (App = () => (
           <Route path="/profile" component={profile} />
           <Route path="/home" component={home} />
           <Route path="/books" component={bookStore} />
+          <Route path="/magazines" component={MagazineStore} />
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>

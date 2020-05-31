@@ -120,7 +120,7 @@ const home = withRouter( props => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>{alert('you clicked me');}}>
+            <TouchableOpacity style={styles.button} onPress={()=>history.push("/magazines")}>
                 <Text style={styles.text}>
                     Comprar revistas
                  </Text>
@@ -152,7 +152,6 @@ const home = withRouter( props => {
 });
 
 const mapStateToProps = state =>{
-  console.log(state);
   return state;
 };
 

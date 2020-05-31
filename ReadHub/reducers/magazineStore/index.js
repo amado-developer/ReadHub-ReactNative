@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import * as types from '../../types/bookStore';
+import * as types from '../../types/magazineStore';
 
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case types.RETRIEVING_COMPLETED: {
+    case types.MAGAZINE_RETRIEVING_COMPLETED: {
       const {entities, order} = action.payload;
       const newState = {...state};
       order.forEach(id => {
@@ -13,7 +13,7 @@ const byId = (state = {}, action) => {
       });
       return newState;
     }
-    case types.RETRIEVING_STARTED: {
+    case types.MAGAZINE_RETRIEVING_STARTED: {
       return {};
     }
     default: {
@@ -24,10 +24,10 @@ const byId = (state = {}, action) => {
 
 const order = (state = [], action) => {
   switch (action.type) {
-    case types.RETRIEVING_COMPLETED: {
+    case types.MAGAZINE_RETRIEVING_COMPLETED: {
       return [...state, ...action.payload.order];
     }
-    case types.RETRIEVING_STARTED: {
+    case types.MAGAZINE_RETRIEVING_STARTED: {
       return [];
     }
   }
@@ -36,13 +36,13 @@ const order = (state = [], action) => {
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case types.RETRIEVING_STARTED: {
+    case types.MAGAZINE_RETRIEVING_STARTED: {
       return true;
     }
-    case types.RETRIEVING_COMPLETED: {
+    case types.MAGAZINE_RETRIEVING_COMPLETED: {
       return false;
     }
-    case types.RETRIEVING_FAILED: {
+    case types.MAGAZINE_RETRIEVING_FAILED: {
       return false;
     }
     default: {
@@ -53,13 +53,13 @@ const isFetching = (state = false, action) => {
 
 const error = (state = null, action) => {
   switch (action.type) {
-    case types.RETRIEVING_FAILED: {
+    case types.MAGAZINE_RETRIEVING_FAILED: {
       return action.payload.error;
     }
-    case types.RETRIEVING_STARTED: {
+    case types.MAGAZINE_RETRIEVING_STARTED: {
       return null;
     }
-    case types.RETRIEVING_COMPLETED: {
+    case types.MAGAZINE_RETRIEVING_COMPLETED: {
       return null;
     }
     default: {
@@ -68,10 +68,10 @@ const error = (state = null, action) => {
   }
 };
 
-const digitalBooksCollection = (state = [], action) => {
+const magazineCollection = (state = [], action) => {
   switch (action.type) {
-    case types.BUYING_COMPLETED: {
-      return [...state, action.payload.books];
+    case types.MAGAZINE_BUYING_COMPLETED: {
+      return [...state, action.payload.magazines];
     }
   }
 
@@ -83,13 +83,13 @@ export default combineReducers({
   order,
   isFetching,
   error,
-  digitalBooksCollection,
+  magazineCollection,
 });
 
-export const getDigitalBook = (state, id) => state.byId[id];
-export const getDigitalBooks = state =>
-  state.order.map(id => getDigitalBook(state, id));
-export const getOrderedBooks = state => state.order;
-export const isFetchingDigitalBooks = state => state.isFetching;
+export const getMagazine = (state, id) => state.byId[id];
+export const getMagazines = state =>
+  state.order.map(id => getMagazine(state, id));
+export const getOrderedMagazines = state => state.order;
+export const isFetchingMagazines = state => state.isFetching;
 export const getError = state => state.error;
-export const getDigitalBooksCollection = state => state.digitalBooksCollection;
+export const getMagazineCollection = state => state.digitalBooksCollection;
