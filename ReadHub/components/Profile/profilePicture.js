@@ -85,10 +85,12 @@ export default connect(
 
 const styles = StyleSheet.create({
   mainContainer: {
+    
     borderColor: 'black',
+    alignItems: 'center',
     borderStyle: 'solid',
-    marginTop: '20%',
-    marginLeft: '10%',
+    marginTop: '15%',
+    marginLeft: '31%',
   },
   profileContainer: {},
   imageContainer: {},
@@ -100,17 +102,18 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'gray',
     width: 150,
-    height: 50,
+    height: 40,
+    marginLeft: 10,
     alignItems: 'center',
     marginTop: 10,
   },
 
   buttonText: {
     color: 'white',
-    paddingTop: 15,
+    paddingTop: 10,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 175,
+    height: 175,
   },
 });
