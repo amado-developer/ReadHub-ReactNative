@@ -25,7 +25,7 @@ const renderInput = field => {
   );
 };
 
-const searchForm =  withRouter(props => {
+const searchForm = withRouter(props => {
   console.log(props);
   const {handleSubmit} = props;
   const {dispatch} = props;
@@ -33,11 +33,16 @@ const searchForm =  withRouter(props => {
   const {history} = props;
   return (
     <ScrollView style={styles.screen}>
-    <View style={styles.header}>
-    <TouchableOpacity  style={styles.goBackButton} onPress={() => history.push("/home")}>
-      <Image source={require('../../Images/goBackButton.png')} style={styles.backImage} />
-    </TouchableOpacity>
-      <Image source={require('../../Images/logo.png')} style={styles.logo} />
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.goBackButton}
+          onPress={() => history.push('/home')}>
+          <Image
+            source={require('../../Images/goBackButton.png')}
+            style={styles.backImage}
+          />
+        </TouchableOpacity>
+        <Image source={require('../../Images/logo.png')} style={styles.logo} />
       </View>
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
@@ -63,24 +68,20 @@ const searchForm =  withRouter(props => {
 
 const buy = props => {
   const {cart} = props.bookCart;
-  if (cart.length > 0){
+  if (cart.length > 0) {
     const {dispatch} = props;
 
     const {balance} = props.profile.info;
     const total = parseFloat(getTotal(props, false));
-    const diff = parseFloat(balance) - total;
-    console.log(diff);
-    if(balance - total < 0){
+    if (balance - total < 0) {
       Alert.alert('Error', "You don't have enough founds");
-    }else{
+    } else {
       dispatch(actions.startBuyingBook(cart));
-     }
     }
-    else{
-      Alert.alert('Error', 'Nothing to buy');
-    }
+  } else {
+    Alert.alert('Error', 'Nothing to buy');
+  }
 };
-
 
 const getTotal = (props, isText) => {
   const {cart} = props.bookCart;
@@ -91,9 +92,9 @@ const getTotal = (props, isText) => {
     const total = price.reduce((a, b) => {
       return parseFloat(a) + parseFloat(b);
     });
-    if(isText){
+    if (isText) {
       return `Total: ${total}`;
-    }else{
+    } else {
       return total;
     }
   }
@@ -195,5 +196,5 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'nowrap',
-  }
+  },
 });

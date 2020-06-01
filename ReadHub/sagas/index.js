@@ -4,6 +4,10 @@ import {watchLoginStarted} from './login';
 import {watchProfilePictureUploaded, watchLoginCompleted} from './profile';
 import {watchBookFetching, watchBookBuying} from './bookStore';
 import {watchMagazineFetching, watchMagazineBuying} from './magazineStore';
+import {
+  watchBookCollectionFetching,
+  watchBookCollectionFetchingOnLogin,
+} from './bookcollection';
 function* mainSaga() {
   yield all([
     fork(watchLoginStarted),
@@ -13,6 +17,8 @@ function* mainSaga() {
     fork(watchBookBuying),
     fork(watchMagazineFetching),
     fork(watchMagazineBuying),
+    fork(watchBookCollectionFetching),
+    fork(watchBookCollectionFetchingOnLogin),
   ]);
 }
 

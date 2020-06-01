@@ -9,8 +9,8 @@ import reduxForm from './components/LogIn/ReduxForm';
 import profile from './components/Profile';
 import home from './components/Home';
 import bookStore from './components/BookStore';
-import signUp from './components/SignUp'
-
+import signUp from './components/SignUp';
+import magazines from './components/MagazineStore';
 const {store, persistor} = configureStore();
 
 export default (App = () => (
@@ -21,8 +21,9 @@ export default (App = () => (
           <Route path="/" exact component={reduxForm} />
           <Route path="/profile" component={profile} />
           <Route path="/home" component={home} />
-          <Route path = "/signUp" component = {signUp} />
+          <Route path="/signUp" component={signUp} />
           <Route path="/books" component={bookStore} />
+          <Route path="/magazines" component={magazines} />
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>

@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as selectors from '../../reducers';
 import * as cartActions from '../../actions/cart';
+import {HOST} from '../../Config';
+
 import {
   View,
   Text,
@@ -31,10 +33,7 @@ const digitalBook = ({
       <Text style={styles.title}>{name}</Text>
       <View style={styles.info}>
         <View style={styles.imageView}>
-          <Image
-            source={{uri: `http://192.168.1.5:8000${cover}`}}
-            style={styles.image}
-          />
+          <Image source={{uri: HOST + cover}} style={styles.image} />
         </View>
         <View style={styles.bookDetail}>
           <Text style={styles.detail}>Author: {author}</Text>

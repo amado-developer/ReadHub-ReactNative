@@ -34,11 +34,11 @@ const getProfilePicture = (onUpload, onError) => {
   });
 };
 
-const profilePicture = ({onUpload, onError, picture}) => {
+const profilePicture = ({onUpload, onError, info}) => {
   return (
     <View style={styles.mainContainer}>
       <View>
-        {picture === null ? (
+        {info.profile_picture === null ? (
           <Image
             style={styles.image}
             source={require('../../assets/default-picture.png')}
@@ -46,9 +46,10 @@ const profilePicture = ({onUpload, onError, picture}) => {
         ) : (
           <Image
             source={{
-              uri: `http://192.168.1.5:8000${picture}`,
+              uri: info.profile_picture,
               // uri: `http://10.0.2.2:8000${picture}`,
             }}
+            resizeMode="cover"
             style={styles.image}
           />
         )}
@@ -71,7 +72,7 @@ const profilePicture = ({onUpload, onError, picture}) => {
 // };
 export default connect(
   state => ({
-    picture: selectors.getProfilePicture(state),
+    info: selectors.getProfileInfo(state),
   }),
   dispatch => ({
     onUpload(picture) {
@@ -84,8 +85,8 @@ export default connect(
 )(profilePicture);
 
 const styles = StyleSheet.create({
+  
   mainContainer: {
-    
     borderColor: 'black',
     alignItems: 'center',
     borderStyle: 'solid',
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: 'center',
     marginTop: 10,
+    borderRadius: 20,
   },
 
   buttonText: {
@@ -115,5 +117,6 @@ const styles = StyleSheet.create({
   image: {
     width: 175,
     height: 175,
+    borderRadius: 80,
   },
 });

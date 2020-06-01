@@ -57,6 +57,7 @@ export const completeViewBookCollection = (book_image, bookName, author) => ({
     author,
   },
 });
+
 export const failViewBookCollection = error => ({
   type: types.VIEW_BOOK_COLLECTION_FAILED,
   payload: {error},

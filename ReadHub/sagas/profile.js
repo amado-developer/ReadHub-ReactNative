@@ -13,10 +13,7 @@ import * as selectors from '../reducers';
 import * as types from '../types/profile';
 import * as loginTypes from '../types/logIn';
 import * as actions from '../actions/profile';
-
-const API_BASE_URL = 'http://192.168.1.5:8000/api/v1';
-// const API_BASE_URL = 'http://10.0.2.2:8000/api/v1';
-
+import {API_BASE_URL} from '../Config';
 
 function* uploadProfilePicture(action) {
   const isLogged = yield select(selectors.isAuthenticated);
@@ -24,9 +21,9 @@ function* uploadProfilePicture(action) {
     const token = yield select(selectors.getToken);
     const id = yield select(selectors.getUserId);
 
-    yield RNFetchBlob.fetch(
+    const response = yield RNFetchBlob.fetch(
       'PATCH',
-      `${API_BASE_URL}/users/upload-profile-picture/${id}/`,
+      `${API_BASE_URL}/users/${id}/upload-profile-picture/`,
       {
         Authorization: `JWT ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -39,7 +36,6 @@ function* uploadProfilePicture(action) {
         },
       ],
     );
-
     const imageResponse = yield call(fetch, `${API_BASE_URL}/users/${id}/`, {
       method: 'GET',
       headers: {
@@ -50,11 +46,13 @@ function* uploadProfilePicture(action) {
 
     const jsonResult = yield imageResponse.json();
     const profilePicture = jsonResult.profile_picture;
+
     yield put(actions.completeUploadProfilePicture(profilePicture));
+    yield put(actions.completeRetrieveProfile(jsonResult));
   }
 }
 
-function* getInitialProfilePicture(action) {
+function* getInitialProfileData(action) {
   const token = yield select(selectors.getToken);
   const id = yield select(selectors.getUserId);
   const imageResponse = yield call(fetch, `${API_BASE_URL}/users/${id}/`, {
@@ -86,5 +84,6 @@ export function* watchProfilePictureUploaded() {
 }
 
 export function* watchLoginCompleted() {
-  yield takeEvery(loginTypes.LOGIN_COMPLETED, getInitialProfilePicture);
+  yield takeEvery(loginTypes.LOGIN_COMPLETED, getInitialProfileData);
 }
+

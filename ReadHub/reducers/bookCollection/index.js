@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import * as types from '../../types/bookStore';
+import * as types from '../../types/bookCollection';
 
 const byId = (state = {}, action) => {
   switch (action.type) {
-    case types.RETRIEVING_COMPLETED: {
+    case types.VIEW_BOOK_COLLECTION_COMPLETED: {
       const {entities, order} = action.payload;
       const newState = {...state};
       order.forEach(id => {
@@ -13,7 +13,7 @@ const byId = (state = {}, action) => {
       });
       return newState;
     }
-    case types.RETRIEVING_STARTED: {
+    case types.VIEW_BOOK_COLLECTION_STARTED: {
       return {};
     }
     default: {
@@ -24,10 +24,10 @@ const byId = (state = {}, action) => {
 
 const order = (state = [], action) => {
   switch (action.type) {
-    case types.RETRIEVING_COMPLETED: {
+    case types.VIEW_BOOK_COLLECTION_COMPLETED: {
       return [...state, ...action.payload.order];
     }
-    case types.RETRIEVING_STARTED: {
+    case types.VIEW_BOOK_COLLECTION_STARTED: {
       return [];
     }
   }
@@ -36,13 +36,13 @@ const order = (state = [], action) => {
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
-    case types.RETRIEVING_STARTED: {
+    case types.VIEW_BOOK_COLLECTION_STARTED: {
       return true;
     }
-    case types.RETRIEVING_COMPLETED: {
+    case types.VIEW_BOOK_COLLECTION_COMPLETED: {
       return false;
     }
-    case types.RETRIEVING_FAILED: {
+    case types.VIEW_BOOK_COLLECTION_FAILED: {
       return false;
     }
     default: {
@@ -53,13 +53,13 @@ const isFetching = (state = false, action) => {
 
 const error = (state = null, action) => {
   switch (action.type) {
-    case types.RETRIEVING_FAILED: {
+    case types.VIEW_BOOK_COLLECTION_FAILED: {
       return action.payload.error;
     }
-    case types.RETRIEVING_STARTED: {
+    case types.VIEW_BOOK_COLLECTION_STARTED: {
       return null;
     }
-    case types.RETRIEVING_COMPLETED: {
+    case types.VIEW_BOOK_COLLECTION_COMPLETED: {
       return null;
     }
     default: {
@@ -68,11 +68,24 @@ const error = (state = null, action) => {
   }
 };
 
+const isButtonPressed = (state = false, action) => {
+  switch (action.type) {
+    case types.BUTTON_PRESSED: {
+      return true;
+    }
+    case types.BUTTON_UNPRESSED: {
+      return false;
+    }
+  }
+  return state;
+};
+
 export default combineReducers({
   byId,
   order,
   isFetching,
   error,
+  isButtonPressed,
 });
 
 export const getDigitalBook = (state, id) => state.byId[id];
@@ -81,3 +94,4 @@ export const getDigitalBooks = state =>
 export const getOrderedBooks = state => state.order;
 export const isFetchingDigitalBooks = state => state.isFetching;
 export const getError = state => state.error;
+export const getIsButtonPressed = state => state.isButtonPressed;

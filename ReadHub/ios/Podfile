@@ -81,6 +81,8 @@ target 'ReadHub' do
 
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'ReadHubTests' do
     inherit! :complete
     # Pods for testing

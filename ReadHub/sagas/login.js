@@ -9,11 +9,10 @@ import {
 } from 'redux-saga/effects';
 
 //import * as selectors from '../reducers';
+
 import * as actions from '../actions/logIn';
 import * as types from '../types/logIn';
-
-const API_BASE_URL = 'http://192.168.1.5:8000/api';
-// const API_BASE_URL = 'http://10.0.2.2:8000/api';
+import {API_BASE_URL} from '../Config';
 
 function* login(action) {
   try {

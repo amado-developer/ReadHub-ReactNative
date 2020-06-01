@@ -2,11 +2,6 @@ import {combineReducers} from 'redux';
 import * as types from '../../types/profile';
 
 const info = (state = null, action) => {
-  try {
-    // console.log('Type: ' + action.type);
-    // console.log('Payload: ' + action.payload.info.first_name);
-  } catch (error) {}
-
   switch (action.type) {
     case types.RETRIEVE_PROFILE_STARTED:
       return null;

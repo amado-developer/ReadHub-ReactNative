@@ -14,9 +14,7 @@ import * as selectors from '../reducers';
 import * as actions from '../actions/bookStore';
 import * as types from '../types/bookStore';
 import * as schemas from '../schemas/digitalBooks';
-
-const API_BASE_URL = 'http://192.168.1.5:8000/api/v1';
-// const API_BASE_URL = 'http://10.0.2.2:8000/api/v1';
+import {API_BASE_URL} from '../Config';
 
 function* searchBooks(action) {
   let {bookName} = action.payload;

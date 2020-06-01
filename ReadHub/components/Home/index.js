@@ -120,7 +120,7 @@ const home = withRouter( props => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>history.push("/magazines")}>
+            <TouchableOpacity style={styles.button} onPress={()=>history.push('/magazines')}>
                 <Text style={styles.text}>
                     Comprar revistas
                  </Text>
@@ -134,7 +134,7 @@ const home = withRouter( props => {
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/profile')}>
               <Text style={styles.text2}>
                 Profile
               </Text>

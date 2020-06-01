@@ -8,6 +8,7 @@ import digitalBooks, * as digitalBooksSelectors from './bookStore/digitalBooks';
 import magazines, * as magazineSelectors from './magazineStore';
 import bookCart, * as bookCartSelectors from './bookCart';
 import magazineCart, * as magazineCartSelectors from './magazineCart/index';
+import bookCollection, * as bookCollectionSelectors from './bookCollection';
 
 const reducer = combineReducers({
   login,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   magazines,
   bookCart,
   magazineCart,
+  bookCollection,
   form: formReducer,
 });
 
@@ -61,13 +63,9 @@ export const isFetchingDigitalBooks = state =>
 export const getDigitalBooksError = state =>
   digitalBooksSelectors.getError(state.digitalBooks);
 
-export const getDigitalBooksCollection = state =>
-  digitalBooksSelectors.getDigitalBooksCollection(state.digitalBooks);
-
 export const getOrderedBooks = state =>
   digitalBooksSelectors.getOrderedBooks(state.digitalBooks);
 
-  
 //Book Cart SELECTORS
 export const getCart = state => bookCartSelectors.getCart(state.bookCart);
 
@@ -88,5 +86,20 @@ export const getOrderedMagazines = state =>
   magazineSelectors.getOrderedMagazines(state.magazines);
 
 //Magaine Cart SELECTORS
-export const getMagazineCart = state => magazineCartSelectors.getCart(state.magazineCart)
+export const getMagazineCart = state =>
+  magazineCartSelectors.getCart(state.magazineCart);
 
+//Book Collection SELECTORS
+export const getBookFromCollection = (state, id) =>
+  bookCollectionSelectors.getDigitalBook(state.bookCollection, id);
+export const getCollection = state =>
+  bookCollectionSelectors.getDigitalBooks(state.bookCollection);
+export const isFetchingCollection = state =>
+  bookCollectionSelectors.isFetchingDigitalBooks(state.bookCollection);
+export const getCollectionError = state =>
+  bookCollectionSelectors.getError(state.bookCollection);
+export const getOrderedBooksFromCollection = state =>
+  bookCollectionSelectors.getOrderedBooks(state.bookCollection);
+
+export const isBookCollectionButtonPressed = state =>
+  bookCollectionSelectors.getIsButtonPressed(state.bookCollection);
