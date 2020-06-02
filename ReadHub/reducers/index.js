@@ -103,3 +103,6 @@ export const getOrderedBooksFromCollection = state =>
 
 export const isBookCollectionButtonPressed = state =>
   bookCollectionSelectors.getIsButtonPressed(state.bookCollection);
+
+export const getBookPDF = state =>
+  bookCollectionSelectors.getPDF(state.bookCollection);

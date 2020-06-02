@@ -1,9 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import * as selectors from '../../reducers';
 
-const book = () => {
-  console.log('aqui ve');
+const book = ({digitalBook, pdfs}) => {
+  let PDFURL = '';
+  const {book} = digitalBook;
+  const range = pdfs.pdf.length;
+  for (let i = 0; i < range; i++) {
+    if (pdfs.pdf[i].book === book.id) {
+      PDFURL = pdfs.pdf[i].pdf;
+      break;
+    }
+  }
+
   return (
     <View>
       <Text>
@@ -14,11 +24,22 @@ const book = () => {
         <Text style={styles.detail}>Publisher: {'publisher'}la</Text>
         <Text style={styles.detail}>DOI: {'doi'}</Text>
         <Text style={styles.detail}>Release Date: {'release_date'}</Text>
+        <Text style={styles.detal}>{PDFURL}</Text>
       </Text>
     </View>
   );
 };
-
-export default connect()(book);
+export default connect((state, id) => ({
+  digitalBook: selectors.getBookFromCollection(state, id),
+  pdfs: selectors.getBookPDF(state),
+}))(book);
 
 const styles = StyleSheet.create({});
+
+//DJANGO => HACER LOS QUERIES (ACTION) 
+//EN EL ESTADO (REDUCTORES => TYPES, ACTIONS)
+// SAGAS -> llamadas al servidor como si fuera postman
+// COMPONENTS
+// MAP Y DISPATCH STATE TO PROPS 
+// styles
+

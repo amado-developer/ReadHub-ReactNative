@@ -46,6 +46,22 @@ function* searchBooks(action) {
         const {non_field_errors} = yield response.json();
         yield put(actions.failFetchingCollection(non_field_errors[0]));
       }
+
+      const pdfResponse = yield call(
+        fetch,
+        `${API_BASE_URL}/digital-book-pdf/get-pdf/?user=${userId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `JWT ${token}`,
+          },
+        },
+      );
+      if (pdfResponse.status === 200) {
+        const jsonResult = yield pdfResponse.json();
+        yield put(actions.completeFetchingPDF(jsonResult));
+      }
     }
   } catch (error) {
     yield put(actions.failFetchingCollection(error));

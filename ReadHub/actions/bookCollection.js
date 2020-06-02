@@ -23,3 +23,17 @@ export const pressButton = () => ({
 export const unpressButton = () => ({
   type: types.BUTTON_UNPRESSED,
 });
+
+export const startFetchingPDF = () => ({
+  type: types.PDF_FETCHING_STARTED,
+});
+
+export const completeFetchingPDF = pdf => ({
+  type: types.PDF_FETCHING_COMPLETED,
+  payload: {pdf},
+});
+
+export const failFetchingPDF = error => ({
+  type: types.PDF_FETCHING_FAILED,
+  payload: {error},
+});

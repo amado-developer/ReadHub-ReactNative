@@ -80,18 +80,29 @@ const isButtonPressed = (state = false, action) => {
   return state;
 };
 
+const pdfBook = (state = null, action) => {
+  switch (action.type) {
+    case types.PDF_FETCHING_COMPLETED: {
+      return action.payload;
+    }
+  }
+  return state;
+};
+
 export default combineReducers({
   byId,
   order,
   isFetching,
   error,
   isButtonPressed,
+  pdfBook,
 });
 
-export const getDigitalBook = (state, id) => state.byId[id];
+export const getDigitalBook = (state, id) => state.byId[id.id];
 export const getDigitalBooks = state =>
   state.order.map(id => getDigitalBook(state, id));
 export const getOrderedBooks = state => state.order;
 export const isFetchingDigitalBooks = state => state.isFetching;
 export const getError = state => state.error;
 export const getIsButtonPressed = state => state.isButtonPressed;
+export const getPDF = state => state.pdfBook;
