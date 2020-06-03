@@ -15,6 +15,7 @@ import {withRouter} from 'react-router-native';
 import ProfilePicture from './profilePicture';
 import Test from './test';
 import * as actions from '../../actions/bookCollection';
+import * as magazineCollectionActions from '../../actions/magazineCollection'
 import Book from './book';
 
 let isPressed = false;
@@ -27,6 +28,10 @@ const profile = withRouter(
     onButtonCollectionPressed,
     onButtonCollectionUnPressed,
     collection,
+    magazineCollection,
+    isMagazineCollectionPressed,
+    onButtonMagazineCollectionPressed,
+    onButtonMagazineCollectionUnPressed,
   }) => {
     return (
       <ScrollView>
@@ -184,8 +189,8 @@ const profile = withRouter(
               source={require('../../Images/downArrow.png')}
               style={styles.downArrow}
             />
-          </TouchableOpacity>
-          {console.log(isBookCollectionPressed)}
+          </TouchableOpacity >
+          
           {isBookCollectionPressed ? (
             <View>
               {collection.map(id => (
@@ -195,6 +200,17 @@ const profile = withRouter(
           ) : (
             <View />
           )}
+          <TouchableOpacity onPress={() => {
+            console.log(!isMagazineCollectionPressed);
+            if(!isMagazineCollectionPressed){
+              onButtonMagazineCollectionPressed();
+            }else{
+              onButtonMagazineCollectionUnPressed();
+            }
+          }}>
+            <Text>Press dude!</Text>
+          </TouchableOpacity>
+          {isMagazineCollectionPressed ? (console.log('It is Pressed!')) : (console.log('sorry buddy'))}
         </View>
       </ScrollView>
     );
@@ -210,6 +226,8 @@ export default connect(
     info: selectors.getProfileInfo(state),
     collection: selectors.getOrderedBooksFromCollection(state),
     isBookCollectionPressed: selectors.isBookCollectionButtonPressed(state),
+    magazineCollection: selectors.getOrderedMagazinesFromCollection(state),
+    isMagazineCollectionPressed: selectors.isMagazineCollectionButtonPressed(state),
   }),
   dispatch => ({
     onBookPressed() {
@@ -222,6 +240,15 @@ export default connect(
     onButtonCollectionUnPressed() {
       dispatch(actions.unpressButton());
     },
+
+    onButtonMagazineCollectionPressed() {
+      dispatch(magazineCollectionActions.pressButton());
+    },
+
+    onButtonMagazineCollectionUnPressed() {
+      dispatch(magazineCollectionActions.unpressButton());
+    },
+    
   }),
 )(profile);
 

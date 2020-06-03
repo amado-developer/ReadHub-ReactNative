@@ -11,6 +11,8 @@ import home from './components/Home';
 import bookStore from './components/BookStore';
 import signUp from './components/SignUp';
 import magazines from './components/MagazineStore';
+import TokenRefresh from './components/TokenRefresh';
+
 const {store, persistor} = configureStore();
 
 export default (App = () => (
@@ -27,6 +29,7 @@ export default (App = () => (
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>
+      <TokenRefresh reviewTime={85000}/>
     </PersistGate>
   </Provider>
 ));

@@ -83,6 +83,8 @@ target 'ReadHub' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'ReadHubTests' do
     inherit! :complete
     # Pods for testing
