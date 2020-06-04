@@ -62,12 +62,12 @@ function* buyMagazines(action) {
     const isAuth = yield select(selectors.isAuthenticated);
     const userId = yield select(selectors.getUserId);
     if (isAuth) {
-      const body = {user: userId, magazines: action.payload.magazines};
+      const body = {user: userId, magazine: action.payload.magazines, ammount: action.payload.ammount};
       const token = yield select(selectors.getToken);
       const cart = yield select(selectors.getCart);
       const response = yield call(
         fetch,
-        `${API_BASE_URL}/magazine-collections/add-to-collection/`,
+        `${API_BASE_URL}/magazine-collections/add-to-magazine-collection/`,
         {
           method: 'POST',
           body: JSON.stringify(body),

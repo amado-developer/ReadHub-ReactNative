@@ -17,14 +17,14 @@ export const failRetrieveBooks = error => ({
   payload: {error},
 });
 
-export const startBuyingBook = books => ({
+export const startBuyingBook = (books, ammount) => ({
   type: types.BUYING_STARTED,
-  payload: {books},
+  payload: {books, ammount},
 });
 
-export const completeBuyingBook = books => ({
+export const completeBuyingBook = (books, ammount) => ({
   type: types.BUYING_COMPLETED,
-  payload: {books},
+  payload: {books, ammount},
 });
 
 export const failBuyBook = error => ({

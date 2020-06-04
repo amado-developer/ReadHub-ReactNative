@@ -1,26 +1,16 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
 import {
   View,
-  TextInput,
   ScrollView,
   Text,
   StyleSheet,
-  Alert,
-  Button,
-  ImageBackground,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
 } from 'react-native';
 
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-native';
-
-
 
 const home = withRouter( props => {
   const {history} = props;
@@ -59,9 +49,9 @@ const home = withRouter( props => {
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push("/library")}>
               <Text style={styles.text2}>
-                Prestar un libro
+                Library
               </Text>
                <Image
                 style={styles.imageIconRight}
@@ -83,9 +73,13 @@ const home = withRouter( props => {
             }}>
             <View style={styles.inputWrap}>
 
+<<<<<<< HEAD
             <TouchableOpacity style={styles.button} onPress={()=> history.push("/returns")}>
+=======
+            <TouchableOpacity style={styles.button} onPress={()=>history.push("/loans")}>
+>>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
                 <Text style={styles.text}>
-                    Reservar salon
+                    Book Loans
                  </Text>
 
                  <Image 
@@ -146,13 +140,32 @@ const home = withRouter( props => {
             </View>
           </View>
 
+          <View style={styles.inputWrap}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/payment')}>
+              <Text style={styles.text2}>
+                Payment
+              </Text>
+               <Image
+                style={styles.imageIconRight}
+                source={require('../../Images/payments.jpg')}
+                resizeMode='contain'
+               />
+            </TouchableOpacity>
+            </View>
+
+            
+
         </ScrollView>
 
   );
 });
 
 const mapStateToProps = state =>{
+<<<<<<< HEAD
   //console.log(state);
+=======
+  console.log(state);
+>>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
   return state;
 };
 
@@ -184,7 +197,7 @@ const styles = StyleSheet.create({
     width: 150,
     marginTop: 5,
     marginLeft: 15,
-
+    borderRadius: 50,
   },
   text:{
     fontFamily: 'Cochin',

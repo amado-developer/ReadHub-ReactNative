@@ -10,9 +10,17 @@ import bookCart, * as bookCartSelectors from './bookCart';
 import magazineCart, * as magazineCartSelectors from './magazineCart/index';
 import bookCollection, * as bookCollectionSelectors from './bookCollection';
 import magazineCollection, * as magazineCollectionSelectors from './magazineCollection';
+<<<<<<< HEAD
 import audiovisual, * as audiovisualSelectors from './audiovisuals';
 import equipmentLoanCart, * as equipmentLoanCartSelectors from './equipmentLoanCart'
 import EquipmentLoans,* as equipmentLoansSelectors from './equipment-loans'
+=======
+import payment, * as paymentOptionSelectors from './payment';
+import library, * as librarySelectors from './library';
+import bookLoanCart, * as bookLoanCartSelectors from './bookLoanCart';
+import loans, * as loansSelectors from './loans';
+
+>>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
 const reducer = combineReducers({
   login,
   signup,
@@ -24,9 +32,16 @@ const reducer = combineReducers({
   magazineCart,
   bookCollection,
   magazineCollection,
+<<<<<<< HEAD
   audiovisual,
   equipmentLoanCart,
   EquipmentLoans,
+=======
+  payment,
+  library,
+  bookLoanCart,
+  loans,
+>>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
   form: formReducer,
 });
 
@@ -61,6 +76,10 @@ export const getIsRetrieving = state =>
   profileSelectors.getIsRetrieving(state.profile);
 export const getProfileError = state =>
   profileSelectors.getError(state.profile);
+export const buy = (state, amount) => 
+  profileSelectors.buy(state.profile, amount);
+export const addFounds = (state, amount) => 
+  profileSelectors.addFounds(state.profile, amount);
 
 //Digital books SELECTORS
 export const getDigitalBook = (state, id) =>
@@ -97,7 +116,7 @@ export const getMagazinesCollection = state =>
 export const getOrderedMagazines = state =>
   magazineSelectors.getOrderedMagazines(state.magazines);
 
-//Magaine Cart SELECTORS
+//Magazine Cart SELECTORS
 export const getMagazineCart = state =>
   magazineCartSelectors.getCart(state.magazineCart);
 
@@ -138,6 +157,7 @@ export const isMagazineCollectionButtonPressed = state =>
 export const getMagazinePDF = state =>
   magazineCollectionSelectors.getPDF(state.magazineCollection);
 
+<<<<<<< HEAD
   //Audiovisual SELECTORS
   export const getEquipments = state => 
   audiovisualSelectors.getEquipments(state.audiovisual);
@@ -164,3 +184,41 @@ export const getMagazinePDF = state =>
    export const isFetchingLoans = state => equipmentLoansSelectors.getIsFetchingEquipment(state.EquipmentLoans);
    export const getLoansError = state => equipmentLoansSelectors.getErrorEquipmentLoan(state.EquipmentLoans);
    
+=======
+
+  //Payment SELECTORS
+  export const getPaymentOption  = state =>
+  paymentOptionSelectors.getPaymentOption(state.payment);
+
+  export const isFecthingPaymentOption = state =>
+  paymentOptionSelectors.getPaymentOption(state.payment);
+
+  export const getPaymentOptionError = state =>
+  paymentOptionSelectors.getError(state.payment);
+
+  //Library SELECTORS
+  export const getBooks = state => 
+  librarySelectors.getBooks(state.library);
+
+  export const getBook = (state, id) =>
+  librarySelectors.getBook(state.library, id);
+
+  export const getOrderedPhysicalBooks = state =>
+  librarySelectors.getOrderedBooks(state.library);
+
+  export const isFetchingPhysicalBook = state =>
+  librarySelectors.getIsFetching(state.library);
+
+  export const bookError = state =>
+  librarySelectors.getError(state.library);
+
+  //Library cart SELECTORS
+  export const getBookLoanCart = state => bookLoanCartSelectors.getCart(state.bookLoanCart);  
+
+  //loans SELECTORS
+  export const getLoan = (state, id) => loansSelectors.getLoan(state.loans, id);
+  export const getLoans = state => loansSelectors.getLoans(state.loans);
+  export const getOrderedLoans = state => loansSelectors.getOrderedLoans(state.loans);
+  export const isFetchingLoans = state => loansSelectors.getIsFetching(state.loans);
+  export const getLoansError = state => loansSelectors.getError(state.loans);
+>>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
