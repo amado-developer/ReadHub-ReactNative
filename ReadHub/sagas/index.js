@@ -21,6 +21,9 @@ import {
 import {
   watchPhysicalBookFetching,
   watchLoanBookStarted,
+  watchInitialLoanData,
+  watchLoanFetching,
+  watchReturnABook,
 } from './library';
 
 function* mainSaga() {
@@ -42,6 +45,9 @@ function* mainSaga() {
     fork(watchAddFounds),
     fork(watchPhysicalBookFetching),
     fork(watchLoanBookStarted),
+    fork(watchInitialLoanData),
+    fork(watchLoanFetching),
+    fork(watchReturnABook),
   ]);
 }
 

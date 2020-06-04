@@ -13,6 +13,8 @@ import magazineCollection, * as magazineCollectionSelectors from './magazineColl
 import payment, * as paymentOptionSelectors from './payment';
 import library, * as librarySelectors from './library';
 import bookLoanCart, * as bookLoanCartSelectors from './bookLoanCart';
+import loans, * as loansSelectors from './loans';
+
 const reducer = combineReducers({
   login,
   signup,
@@ -27,6 +29,7 @@ const reducer = combineReducers({
   payment,
   library,
   bookLoanCart,
+  loans,
   form: formReducer,
 });
 
@@ -168,3 +171,10 @@ export const getMagazinePDF = state =>
 
   //Library cart SELECTORS
   export const getBookLoanCart = state => bookLoanCartSelectors.getCart(state.bookLoanCart);  
+
+  //loans SELECTORS
+  export const getLoan = (state, id) => loansSelectors.getLoan(state.loans, id);
+  export const getLoans = state => loansSelectors.getLoans(state.loans);
+  export const getOrderedLoans = state => loansSelectors.getOrderedLoans(state.loans);
+  export const isFetchingLoans = state => loansSelectors.getIsFetching(state.loans);
+  export const getLoansError = state => loansSelectors.getError(state.loans);

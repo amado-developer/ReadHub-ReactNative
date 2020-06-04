@@ -1,16 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 
-const loans = () =>{
+import Loan from './loan';
+import * as selectors from '../../reducers';
+const loans = ({loanCollection}) =>{
     return(
-        <View>
-            <Text>Book</Text>
-            <TouchableOpacity>
-                <Text>Return Book</Text>
-            </TouchableOpacity>
-        </View>
+        <ScrollView>
+            {loanCollection.map
+            (id => <Loan key={id} id={id} />)}
+        </ScrollView>
     );
 };
 
-export default connect()(loans);
+export default connect(
+    state => ({
+        loanCollection : selectors.getOrderedLoans(state),
+    }),
+    dispatch => ({
+
+    }),
+)(loans);

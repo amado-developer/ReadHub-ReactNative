@@ -38,11 +38,29 @@ export const startReturningBook = book =>({
     payload: {book}
 });
 
-export const completeReturningBook= ()=>({
+export const completeReturningBook= book =>({
     type: types.RETURN_A_BOOK_COMPLETED,
+    payload: {book}
 });
 
 export const failReturningBook = error =>({
     type: types.RETURN_A_BOOK_FAILED,
+    payload: {error}
+});
+
+export const startFetchingLoans = () =>({
+    type: types.FETCHING_LOAN_COLLECTION_STARTED,
+});
+
+export const completeFetchingLoans = (entities, order) =>({
+    type: types.FETCHING_LOAN_COLLECTION_COMPLETED,
+    payload: { 
+        entities,
+        order
+    }
+});
+
+export const failFetchingLoans = error =>({
+    type: types.FECTHING_LOAN_COLLECTION_FAILED,
     payload: {error}
 });
