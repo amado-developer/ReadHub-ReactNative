@@ -10,6 +10,9 @@ import bookCart, * as bookCartSelectors from './bookCart';
 import magazineCart, * as magazineCartSelectors from './magazineCart/index';
 import bookCollection, * as bookCollectionSelectors from './bookCollection';
 import magazineCollection, * as magazineCollectionSelectors from './magazineCollection';
+import payment, * as paymentOptionSelectors from './payment';
+import library, * as librarySelectors from './library';
+import bookLoanCart, * as bookLoanCartSelectors from './bookLoanCart';
 const reducer = combineReducers({
   login,
   signup,
@@ -21,6 +24,9 @@ const reducer = combineReducers({
   magazineCart,
   bookCollection,
   magazineCollection,
+  payment,
+  library,
+  bookLoanCart,
   form: formReducer,
 });
 
@@ -55,6 +61,10 @@ export const getIsRetrieving = state =>
   profileSelectors.getIsRetrieving(state.profile);
 export const getProfileError = state =>
   profileSelectors.getError(state.profile);
+export const buy = (state, amount) => 
+  profileSelectors.buy(state.profile, amount);
+export const addFounds = (state, amount) => 
+  profileSelectors.addFounds(state.profile, amount);
 
 //Digital books SELECTORS
 export const getDigitalBook = (state, id) =>
@@ -88,7 +98,7 @@ export const getMagazinesCollection = state =>
 export const getOrderedMagazines = state =>
   magazineSelectors.getOrderedMagazines(state.magazines);
 
-//Magaine Cart SELECTORS
+//Magazine Cart SELECTORS
 export const getMagazineCart = state =>
   magazineCartSelectors.getCart(state.magazineCart);
 
@@ -128,3 +138,33 @@ export const isMagazineCollectionButtonPressed = state =>
 
 export const getMagazinePDF = state =>
   magazineCollectionSelectors.getPDF(state.magazineCollection);
+
+
+  //Payment SELECTORS
+  export const getPaymentOption  = state =>
+  paymentOptionSelectors.getPaymentOption(state.payment);
+
+  export const isFecthingPaymentOption = state =>
+  paymentOptionSelectors.getPaymentOption(state.payment);
+
+  export const getPaymentOptionError = state =>
+  paymentOptionSelectors.getError(state.payment);
+
+  //Library SELECTORS
+  export const getBooks = state => 
+  librarySelectors.getBooks(state.library);
+
+  export const getBook = (state, id) =>
+  librarySelectors.getBook(state.library, id);
+
+  export const getOrderedPhysicalBooks = state =>
+  librarySelectors.getOrderedBooks(state.library);
+
+  export const isFetchingPhysicalBook = state =>
+  librarySelectors.getIsFetching(state.library);
+
+  export const bookError = state =>
+  librarySelectors.getError(state.library);
+
+  //Library cart SELECTORS
+  export const getBookLoanCart = state => bookLoanCartSelectors.getCart(state.bookLoanCart);  

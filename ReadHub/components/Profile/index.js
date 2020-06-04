@@ -201,7 +201,7 @@ const profile = withRouter(
             <View />
           )}
           <TouchableOpacity onPress={() => {
-            console.log(!isMagazineCollectionPressed);
+            console.log(isMagazineCollectionPressed);
             if(!isMagazineCollectionPressed){
               onButtonMagazineCollectionPressed();
             }else{

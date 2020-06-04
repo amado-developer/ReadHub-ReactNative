@@ -12,6 +12,17 @@ import {
   watchMagazineCollectionFetching,
   watchMagazineCollectionFetchingOnLogin
 } from './magazineCollection';
+import {
+  watchPaymentOptionChanged, 
+  watchInitialData,
+  watchAddFounds,
+} from './payment';
+
+import {
+  watchPhysicalBookFetching,
+  watchLoanBookStarted,
+} from './library';
+
 function* mainSaga() {
   yield all([
     fork(watchLoginStarted),
@@ -26,6 +37,11 @@ function* mainSaga() {
     fork(watchRefreshTokenStarted),
     fork(watchMagazineCollectionFetching),
     fork(watchMagazineCollectionFetchingOnLogin),
+    fork(watchPaymentOptionChanged),
+    fork(watchInitialData),
+    fork(watchAddFounds),
+    fork(watchPhysicalBookFetching),
+    fork(watchLoanBookStarted),
   ]);
 }
 

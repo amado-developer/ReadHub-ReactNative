@@ -12,6 +12,10 @@ import bookStore from './components/BookStore';
 import signUp from './components/SignUp';
 import magazines from './components/MagazineStore';
 import TokenRefresh from './components/TokenRefresh';
+import Payment from './components/Payment';
+import PaymentForm from './components/Payment/paymentForm';
+import Library from './components/Library';
+import Loans from './components/Loans';
 
 const {store, persistor} = configureStore();
 
@@ -26,6 +30,10 @@ export default (App = () => (
           <Route path="/signUp" component={signUp} />
           <Route path="/books" component={bookStore} />
           <Route path="/magazines" component={magazines} />
+          <Route path="/payment" component={Payment} />
+          <Route path="/paymentForm" component={PaymentForm} />
+          <Route path="/library" component={Library} />
+          <Route path="/loans" component={Loans} />
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>

@@ -16,6 +16,10 @@ const byId = (state = {}, action) => {
     case types.RETRIEVING_STARTED: {
       return {};
     }
+
+    case types.BUYING_COMPLETED: {
+      return {};
+    }
     default: {
       return state;
     }
@@ -28,6 +32,9 @@ const order = (state = [], action) => {
       return [...state, ...action.payload.order];
     }
     case types.RETRIEVING_STARTED: {
+      return [];
+    }
+    case types.BUYING_COMPLETED: {
       return [];
     }
   }

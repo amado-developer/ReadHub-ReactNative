@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import {Field, reduxForm} from 'redux-form';
-import * as actions from '../../actions/bookStore';
+import * as actions from '../../actions/library';
 import {withRouter} from 'react-router-native';
 
 const renderInput = field => {
@@ -45,61 +45,30 @@ const searchForm = withRouter(props => {
       </View>
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
-        <TouchableOpacity style={styles.buyButton} onPress={() => {
-          Alert.alert("Succesful!", "Your ordered was completed!");
-          buy(props);
-          <searchForm />
-          }}>
-          <Text>Buy</Text>
+        <TouchableOpacity style={styles.buyButton} onPress={() => loan(props)}>
+          <Text>Loan</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           color={'white'}
           onPress={handleSubmit(values => {
-            dispatch(actions.startRetrieveBooks(values.search));
+            dispatch(actions.startFetchingBook(values.search));
           })}>
           <Text style={styles.searchButtonText}>Search</Text>
         </TouchableOpacity>
-        <Text style={styles.balanceText}>
-          {'Current Balance: $' + profile.info.balance}
-        </Text>
-        <Text style={styles.totalAmmount}>{getTotal(props, true)}</Text>
       </View>
     </ScrollView>
   );
 });
 
-const buy = props => {
-  const {cart} = props.bookCart;
+const loan = props => {
+  const {cart} = props.bookLoanCart;
   if (cart.length > 0) {
     const {dispatch} = props;
-
-    const {balance} = props.profile.info;
-    const total = parseFloat(getTotal(props, false));
-    if (balance - total < 0) {
-      Alert.alert('Error', "You don't have enough founds");
-    } else {
-      dispatch(actions.startBuyingBook(cart, total));
+      dispatch(actions.startLoaningBook(cart));
     }
-  } else {
-    Alert.alert('Error', 'Nothing to buy');
-  }
-};
-
-const getTotal = (props, isText) => {
-  const {cart} = props.bookCart;
-  const {digitalBooks} = props;
-
-  if (cart.length > 0 && digitalBooks.order.length > 0) {
-    const price = cart.map(id => digitalBooks.byId[1].price);
-    const total = price.reduce((a, b) => {
-      return parseFloat(a) + parseFloat(b);
-    });
-    if (isText) {
-      return `Total: ${total}`;
-    } else {
-      return total;
-    }
+  else {
+    Alert.alert('Error', 'Nothing to Loan');
   }
 };
 
@@ -110,7 +79,7 @@ const mapStateToProps = state => {
 const decoratedComponent = connect(mapStateToProps)(searchForm);
 
 export default reduxForm({
-  form: 'searchBook',
+  form: 'searchPhysicalBooks',
 })(decoratedComponent);
 
 const styles = StyleSheet.create({

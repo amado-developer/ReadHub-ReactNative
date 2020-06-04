@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import * as selectors from '../../reducers';
 import SearchForm from './searchForm';
 import {ScrollView, View} from 'react-native';
-import Book from './digitalBook';
+import Book from './book';
 
-const bookStore = ({digitalBooks}) => {
+const library = ({orderedBooks}) => {
   return (
     <ScrollView>
       <SearchForm />
-      {digitalBooks.length > 0 && digitalBooks !== undefined ? (
+      {orderedBooks.length > 0 && orderedBooks !== undefined ? (
         <View>
-          {digitalBooks.map(id => (
+          {orderedBooks.map(id => (
             <Book key={id} id={id} />
           ))}
         </View>
@@ -22,6 +22,8 @@ const bookStore = ({digitalBooks}) => {
   );
 };
 
-export default connect(state => ({
-  digitalBooks: selectors.getOrderedBooks(state),
-}))(bookStore);
+export default connect(
+  state => ({
+    orderedBooks : selectors.getOrderedPhysicalBooks(state)
+  })
+)(library);

@@ -63,7 +63,7 @@ function* buyBooks(action) {
     const isAuth = yield select(selectors.isAuthenticated);
     const userId = yield select(selectors.getUserId);
     if (isAuth) {
-      const body = {user: userId, books: action.payload.books};
+      const body = {user: userId, books: action.payload.books, ammount: action.payload.ammount};
       const token = yield select(selectors.getToken);
       const cart = yield select(selectors.getCart);
       const response = yield call(
