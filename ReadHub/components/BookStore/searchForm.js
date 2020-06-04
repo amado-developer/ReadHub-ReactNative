@@ -91,7 +91,7 @@ const getTotal = (props, isText) => {
   const {digitalBooks} = props;
 
   if (cart.length > 0 && digitalBooks.order.length > 0) {
-    const price = cart.map(id => digitalBooks.byId[1].price);
+    const price = cart.map(id => digitalBooks.byId[id].price);
     const total = price.reduce((a, b) => {
       return parseFloat(a) + parseFloat(b);
     });

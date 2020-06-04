@@ -16,6 +16,9 @@ const byId = (state = {}, action) => {
     case types.MAGAZINE_RETRIEVING_STARTED: {
       return {};
     }
+    case types.MAGAZINE_BUYING_COMPLETED:{
+      return {};
+    }
     default: {
       return state;
     }
@@ -28,6 +31,9 @@ const order = (state = [], action) => {
       return [...state, ...action.payload.order];
     }
     case types.MAGAZINE_RETRIEVING_STARTED: {
+      return [];
+    }
+    case types.MAGAZINE_BUYING_COMPLETED:{
       return [];
     }
   }

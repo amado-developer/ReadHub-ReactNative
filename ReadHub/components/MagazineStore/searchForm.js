@@ -45,7 +45,11 @@ const searchForm = withRouter(props => {
       </View>
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
-        <TouchableOpacity style={styles.buyButton} onPress={() => buy(props)}>
+        <TouchableOpacity style={styles.buyButton} onPress={() => {
+          Alert.alert("Succesful!", "Your ordered was completed!");
+          buy(props);
+          <searchForm />;
+          }}>
           <Text>Buy</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -71,11 +75,11 @@ const buy = props => {
     const {dispatch} = props;
     const {balance} = props.profile.info;
     const total = parseFloat(getTotal(props, false));
-    console.log(getTotal(props, false));
+   
     if (balance - total < 0) {
       Alert.alert('Error', "You don't have enough founds");
     } else {
-      dispatch(actions.startBuyingMagazines(cart));
+      dispatch(actions.startBuyingMagazines(cart, total));
     }
   } else {
     Alert.alert('Error', 'Nothing to buy');
@@ -87,7 +91,7 @@ const getTotal = (props, isText) => {
   const {magazines} = props;
 
   if (cart.length > 0 && magazines.order.length > 0) {
-    const price = cart.map(id => magazines.byId[1].price);
+    const price = cart.map(id => magazines.byId[id].price);
     const total = price.reduce((a, b) => {
       return parseFloat(a) + parseFloat(b);
     });

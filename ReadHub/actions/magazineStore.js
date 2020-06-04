@@ -18,14 +18,14 @@ export const failRetrieveMagazines = error => ({
   payload: {error},
 });
 
-export const startBuyingMagazines = magazines => ({
+export const startBuyingMagazines = (magazines, ammount) => ({
   type: types.MAGAZINE_BUYING_STARTED,
-  payload: {magazines},
+  payload: {magazines, ammount},
 });
 
-export const completeBuyingMagazines = magazines => ({
+export const completeBuyingMagazines = (magazines, ammount) => ({
   type: types.MAGAZINE_BUYING_COMPLETED,
-  payload: {magazines},
+  payload: {magazines, ammount},
 });
 
 export const failBuyMagazines = error => ({

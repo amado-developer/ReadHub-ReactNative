@@ -22,9 +22,9 @@ import {
       const token = yield select(selectors.getToken);
       const id = yield select(selectors.getUserId);
       const paymentOption = yield select(selectors.getPaymentOption);
-
+      console.log(paymentOption.info.length);
       try{
-        if(paymentOption === null){
+        if(paymentOption.info.length === 0){
             const response = yield call(
                 fetch,
                 `${API_BASE_URL}/payment-option/change-payment-option/?user=${id}`,

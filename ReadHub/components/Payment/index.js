@@ -6,8 +6,16 @@ import * as selectors from '../../reducers';
 import * as actions from '../../actions/payment';
 
 const payment = withRouter(({history, cardInfo, onPress}) => {
-    const {card_holder, card_number, exp_date} = cardInfo.info[0];
-   console.log(cardInfo.info[0]);
+    let card_holder = 'Card Holder';
+    let card_number = 'Card Number';
+    let exp_date = 'Exp Date';
+    console.log('la card: ' + cardInfo.info)
+
+    if(cardInfo.info.length > 0){
+        card_holder = cardInfo.info[0].card_holder;
+        card_number = cardInfo.info[0].card_number;
+        exp_date = cardInfo.info[0].exp_date;
+    }
     const [quantity, changeQuantity] = useState('');
     return(
         <View>
