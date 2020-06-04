@@ -45,7 +45,7 @@ const searchForm = withRouter(props => {
       </View>
       <View style={styles.searchContainer}>
         <Field name="search" component={renderInput} type="text" />
-        <TouchableOpacity style={styles.buyButton} onPress={() => {loan(props); dispatch(actions.startFetchingLoans());}}>
+        <TouchableOpacity style={styles.buyButton} onPress={() => {loan(props);}}>
           <Text>Loan</Text>
         </TouchableOpacity>
         <TouchableOpacity

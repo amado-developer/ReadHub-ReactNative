@@ -10,7 +10,7 @@ const loans = ({loanCollectionEquipment}) =>{
     console.log(loanCollectionEquipment)
     return(
         <ScrollView>
-            <Text>la gran puchis</Text>
+            <Text></Text>
 
             {loanCollectionEquipment.map
             (id => <LoanEquipment key={id} id={id} />)}
@@ -20,7 +20,7 @@ const loans = ({loanCollectionEquipment}) =>{
 
 export default connect(
     state => ({
-        loanCollectionEquipment : selectors.getOrderedLoans(state),
+        loanCollectionEquipment : selectors.getEquipmentOrderedLoans(state),
 
     }),
     dispatch => ({

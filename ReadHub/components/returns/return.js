@@ -27,3 +27,4 @@ export default connect(
         }
     })
 )(loanEquipment);
+

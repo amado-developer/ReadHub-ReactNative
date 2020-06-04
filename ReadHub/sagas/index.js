@@ -4,6 +4,9 @@ import {watchLoginStarted, watchRefreshTokenStarted} from './login';
 import {watchProfilePictureUploaded, watchLoginCompleted} from './profile';
 import {watchBookFetching, watchBookBuying} from './bookStore';
 import {watchMagazineFetching, watchMagazineBuying} from './magazineStore';
+import {watchSignUser} from './signup';
+import {watchEquipmentFetching, watchLoanEquipmentStarted,
+  watchInitialEquipmentLoanData,watchEquipmentLoanFetching,watchReturnEquipment} from './audiovisuals'
 import {
   watchBookCollectionFetching,
   watchBookCollectionFetchingOnLogin,
@@ -12,11 +15,6 @@ import {
   watchMagazineCollectionFetching,
   watchMagazineCollectionFetchingOnLogin
 } from './magazineCollection';
-<<<<<<< HEAD
-import {watchSignUser} from './signup';
-import {watchEquipmentFetching, watchLoanEquipmentStarted,
-  watchInitialEquipmentLoanData,watchEquipmentLoanFetching,watchReturnEquipment} from './audiovisuals'
-=======
 import {
   watchPaymentOptionChanged, 
   watchInitialData,
@@ -30,7 +28,6 @@ import {
   watchLoanFetching,
   watchReturnABook,
 } from './library';
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
 
 function* mainSaga() {
   yield all([
@@ -46,15 +43,6 @@ function* mainSaga() {
     fork(watchRefreshTokenStarted),
     fork(watchMagazineCollectionFetching),
     fork(watchMagazineCollectionFetchingOnLogin),
-<<<<<<< HEAD
-    fork(watchSignUser),
-    fork(watchEquipmentFetching),
-    fork(watchLoanEquipmentStarted),
-    fork(watchInitialEquipmentLoanData),
-    fork(watchEquipmentLoanFetching),
-    fork(watchReturnEquipment)
-
-=======
     fork(watchPaymentOptionChanged),
     fork(watchInitialData),
     fork(watchAddFounds),
@@ -63,7 +51,13 @@ function* mainSaga() {
     fork(watchInitialLoanData),
     fork(watchLoanFetching),
     fork(watchReturnABook),
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
+    fork(watchSignUser),
+    fork(watchEquipmentFetching),
+    fork(watchLoanEquipmentStarted),
+    fork(watchInitialEquipmentLoanData),
+    fork(watchEquipmentLoanFetching),
+    fork(watchReturnEquipment)
+
   ]);
 }
 

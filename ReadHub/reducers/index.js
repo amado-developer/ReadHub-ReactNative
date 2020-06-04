@@ -10,17 +10,14 @@ import bookCart, * as bookCartSelectors from './bookCart';
 import magazineCart, * as magazineCartSelectors from './magazineCart/index';
 import bookCollection, * as bookCollectionSelectors from './bookCollection';
 import magazineCollection, * as magazineCollectionSelectors from './magazineCollection';
-<<<<<<< HEAD
-import audiovisual, * as audiovisualSelectors from './audiovisuals';
-import equipmentLoanCart, * as equipmentLoanCartSelectors from './equipmentLoanCart'
-import EquipmentLoans,* as equipmentLoansSelectors from './equipment-loans'
-=======
 import payment, * as paymentOptionSelectors from './payment';
 import library, * as librarySelectors from './library';
 import bookLoanCart, * as bookLoanCartSelectors from './bookLoanCart';
 import loans, * as loansSelectors from './loans';
+import audiovisual, * as audiovisualSelectors from './audiovisuals';
+import equipmentLoanCart, * as equipmentLoanCartSelectors from './equipmentLoanCart'
+import EquipmentLoans,* as equipmentLoansSelectors from './equipment-loans'
 
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
 const reducer = combineReducers({
   login,
   signup,
@@ -32,16 +29,13 @@ const reducer = combineReducers({
   magazineCart,
   bookCollection,
   magazineCollection,
-<<<<<<< HEAD
-  audiovisual,
-  equipmentLoanCart,
-  EquipmentLoans,
-=======
   payment,
   library,
   bookLoanCart,
   loans,
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
+  audiovisual,
+  equipmentLoanCart,
+  EquipmentLoans,
   form: formReducer,
 });
 
@@ -96,9 +90,6 @@ export const getOrderedBooks = state =>
 
 //Book Cart SELECTORS
 export const getCart = state => bookCartSelectors.getCart(state.bookCart);
-
-
-
 
 //Magazines SELECTORS
 export const getMagazine = (state, id) =>
@@ -157,34 +148,6 @@ export const isMagazineCollectionButtonPressed = state =>
 export const getMagazinePDF = state =>
   magazineCollectionSelectors.getPDF(state.magazineCollection);
 
-<<<<<<< HEAD
-  //Audiovisual SELECTORS
-  export const getEquipments = state => 
-  audiovisualSelectors.getEquipments(state.audiovisual);
-
-  export const getEquipment = (state, id) =>
-  audiovisualSelectors.getEquipment(state.audiovisual, id);
-
-  export const getOrderedEquipment = state =>
-  audiovisualSelectors.getOrderedEquipment(state.audiovisual);
-
-  export const getIsFetchingAudiovisuals = state =>
-  audiovisualSelectors.getIsFetching(state.audiovisual);
-
-  export const getErrorAudiovisuals = state =>
-  audiovisualSelectors.getError(state.audiovisual);
-
-   //Library LOAN cart SELECTORS
-   export const getEquipmentLoanCart = state => equipmentLoanCartSelectors.getEquipmentCart(state.equipmentLoanCart);  
-
-   //equipmetn loans selectors
-   export const getEquipmentLoan = (state, id) => equipmentLoansSelectors.getEquipmentLoan(state.EquipmentLoans, id);
-   export const getLoans = state => equipmentLoansSelectors.getEquipmentLoans(state.EquipmentLoans);
-   export const getOrderedLoans = state => equipmentLoansSelectors.getOrderedEquipmentLoans(state.EquipmentLoans);
-   export const isFetchingLoans = state => equipmentLoansSelectors.getIsFetchingEquipment(state.EquipmentLoans);
-   export const getLoansError = state => equipmentLoansSelectors.getErrorEquipmentLoan(state.EquipmentLoans);
-   
-=======
 
   //Payment SELECTORS
   export const getPaymentOption  = state =>
@@ -221,4 +184,30 @@ export const getMagazinePDF = state =>
   export const getOrderedLoans = state => loansSelectors.getOrderedLoans(state.loans);
   export const isFetchingLoans = state => loansSelectors.getIsFetching(state.loans);
   export const getLoansError = state => loansSelectors.getError(state.loans);
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
+
+//Audiovisual SELECTORS
+export const getEquipments = state => 
+audiovisualSelectors.getEquipments(state.audiovisual);
+
+export const getEquipment = (state, id) =>
+audiovisualSelectors.getEquipment(state.audiovisual, id);
+
+export const getOrderedEquipment = state =>
+audiovisualSelectors.getOrderedEquipment(state.audiovisual);
+
+export const getIsFetchingAudiovisuals = state =>
+audiovisualSelectors.getIsFetching(state.audiovisual);
+
+export const getErrorAudiovisuals = state =>
+audiovisualSelectors.getError(state.audiovisual);
+
+ //Library LOAN cart SELECTORS
+ export const getEquipmentLoanCart = state => equipmentLoanCartSelectors.getEquipmentCart(state.equipmentLoanCart);  
+
+ //equipmetn loans selectors
+ export const getEquipmentLoan = (state, id) => equipmentLoansSelectors.getEquipmentLoan(state.EquipmentLoans, id);
+ export const getEquipmentLoans = state => equipmentLoansSelectors.getEquipmentLoans(state.EquipmentLoans);
+ export const getEquipmentOrderedLoans = state => equipmentLoansSelectors.getOrderedEquipmentLoans(state.EquipmentLoans);
+ export const isFetchingEquipmentLoans = state => equipmentLoansSelectors.getIsFetchingEquipment(state.EquipmentLoans);
+ export const getEquipmentLoansError = state => equipmentLoansSelectors.getErrorEquipmentLoan(state.EquipmentLoans);
+ 

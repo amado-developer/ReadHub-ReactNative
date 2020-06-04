@@ -8,15 +8,18 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
+import * as actions  from '../../actions/library';
+import * as audioActions from '../../actions/audiovisuals';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-native';
-
+import Logout from '../LogOutButton';
 const home = withRouter( props => {
   const {history} = props;
+  const {dispatch} = props;
   return (
        <ScrollView >
           <View  style={styles.container} >
+            <Logout />
             <Image
               style={styles.image}
               source={require('../../Images/logo.png')}
@@ -73,16 +76,15 @@ const home = withRouter( props => {
             }}>
             <View style={styles.inputWrap}>
 
-<<<<<<< HEAD
-            <TouchableOpacity style={styles.button} onPress={()=> history.push("/returns")}>
-=======
-            <TouchableOpacity style={styles.button} onPress={()=>history.push("/loans")}>
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
+            <TouchableOpacity style={styles.button} onPress={()=>{
+              dispatch(actions.startFetchingLoans());
+              history.push("/loans")
+              }}>
                 <Text style={styles.text}>
                     Book Loans
                  </Text>
 
-                 <Image 
+                 <Image
                     style={styles.imageIcon}
                     source={require('../../Images/esta.png')}
                     />
@@ -93,7 +95,7 @@ const home = withRouter( props => {
             <View style={styles.inputWrap}>
             <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/audiovisuals')}>
               <Text style={styles.text3}>
-                Solicitar Equipo
+                Request equipment
               </Text>
                <Image
                 style={styles.imageIconRight}
@@ -151,9 +153,22 @@ const home = withRouter( props => {
                 resizeMode='contain'
                />
             </TouchableOpacity>
-            </View>
 
-            
+            <TouchableOpacity style={styles.buttonRight} onPress={()=> {
+              dispatch(audioActions.startFetchingEquipmentLoans());
+              history.push('/returns');
+             
+              }}>
+              <Text style={styles.text2}>
+                RETURNS
+              </Text>
+               <Image
+                style={styles.imageIconRight}
+                //source={require('../../Images/return.png')}
+                resizeMode='contain'
+               />
+            </TouchableOpacity>
+            </View>
 
         </ScrollView>
 
@@ -161,11 +176,7 @@ const home = withRouter( props => {
 });
 
 const mapStateToProps = state =>{
-<<<<<<< HEAD
-  //console.log(state);
-=======
   console.log(state);
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
   return state;
 };
 
@@ -254,4 +265,3 @@ const styles = StyleSheet.create({
 
 
 });
-

@@ -2,7 +2,9 @@ import {combineReducers} from 'redux';
 import * as types from '../../types/profile';
 import * as paymentTypes from '../../types/payment';
 import * as bookstoreTypes from '../../types/bookStore';
+import * as loginTypes from '../../types/logIn';
 import * as magazinestoreTypes from '../../types/magazineStore';
+
 const info = (state = null, action) => {
   switch (action.type) {
     case types.RETRIEVE_PROFILE_STARTED:{
@@ -34,6 +36,9 @@ const info = (state = null, action) => {
       current_balance -= parseFloat(action.payload.magazines.ammount);
       newState.balance = current_balance
       return newState;
+    }
+    case loginTypes.AUTHENTICATION_IDENTITY_CLEARED: {
+      return null;
     }
   }
   return state;

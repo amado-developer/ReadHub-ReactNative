@@ -167,7 +167,7 @@ const signUp = props => {
           <View >
               <Image
                   style={styles.image2}
-                  // source={require('../../Images/signup.png')}
+                  //source={require('../../Images/sign.PNG')}
                 />
               <Image
                   style={styles.image}

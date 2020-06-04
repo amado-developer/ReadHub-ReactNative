@@ -12,17 +12,12 @@ import bookStore from './components/BookStore';
 import signUp from './components/SignUp';
 import magazines from './components/MagazineStore';
 import TokenRefresh from './components/TokenRefresh';
-<<<<<<< HEAD
-import equipment from './components/audiovisuals';
-import returns from './components/returns';
-
-=======
 import Payment from './components/Payment';
 import PaymentForm from './components/Payment/paymentForm';
 import Library from './components/Library';
 import Loans from './components/Loans';
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
-
+import equipment from './components/audiovisuals';
+import returns from './components/returns';
 const {store, persistor} = configureStore();
 
 export default (App = () => (
@@ -36,15 +31,13 @@ export default (App = () => (
           <Route path="/signUp" component={signUp} />
           <Route path="/books" component={bookStore} />
           <Route path="/magazines" component={magazines} />
-<<<<<<< HEAD
-          <Route path="/audiovisuals" component={equipment}/>
-          <Route path="/returns" component={returns} />
-=======
           <Route path="/payment" component={Payment} />
           <Route path="/paymentForm" component={PaymentForm} />
           <Route path="/library" component={Library} />
           <Route path="/loans" component={Loans} />
->>>>>>> e0d0319938a822bd8e0fd444dfcfbc55e3f71e0a
+          <Route path="/audiovisuals" component={equipment}/>
+          <Route path="/returns" component={returns} />
+          
           {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>

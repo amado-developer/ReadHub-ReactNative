@@ -32,3 +32,4 @@ export const failTokenRefresh = error => ({
   type: types.TOKEN_REFRESH_FAILED,
   payload: { error },
 });
+
