@@ -73,6 +73,15 @@ const logIn = props => {
             })}>
             <Text>Log in</Text>
           </TouchableOpacity>
+
+
+          <TouchableOpacity
+          style={styles.button}
+          color={'white'}
+          onPress={()=>history.push('/SignUp')}> 
+          <Text>Sign Up</Text>
+        </TouchableOpacity>
+    
         </View>
       </View>
     );

@@ -83,12 +83,12 @@ const home = withRouter( props => {
             }}>
             <View style={styles.inputWrap}>
 
-            <TouchableOpacity style={styles.button} onPress={()=>{alert('you clicked me');}}>
+            <TouchableOpacity style={styles.button} onPress={()=> history.push("/returns")}>
                 <Text style={styles.text}>
                     Reservar salon
                  </Text>
 
-                 <Image
+                 <Image 
                     style={styles.imageIcon}
                     source={require('../../Images/esta.png')}
                     />
@@ -97,7 +97,7 @@ const home = withRouter( props => {
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=>{alert('you clicked me');}}>
+            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/audiovisuals')}>
               <Text style={styles.text3}>
                 Solicitar Equipo
               </Text>
@@ -152,6 +152,7 @@ const home = withRouter( props => {
 });
 
 const mapStateToProps = state =>{
+  //console.log(state);
   return state;
 };
 

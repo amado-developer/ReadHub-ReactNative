@@ -1,23 +1,22 @@
 /* eslint-disable */
 import { combineReducers } from 'redux';
 import * as types from '../../types/signup';
+import actions from 'redux-form/lib/actions';
 
 const register = (state= null, action) => {
-    switch(action.type)
-    {
-        case types.SIGNUP_STARTED:
-            {
+    switch(action.type){
+        case types.SIGNUP_STARTED:{
+            console.log(action.payload)
+            return action.payload;
+           
+        }
+        case types.SIGNUP_COMPLETED: {
+            return null;
+        }
+        case types.SIGNUP_FAILED:{
            return null;
-        }
-        case types.SIGNUP_COMPLETED: 
-        {
-            return action.payload.register
-        }
-        case types.SIGNUP_FAILED:
-            {
-           return null;
-        }
-          
+        }   
+
     }
     return state;
 }

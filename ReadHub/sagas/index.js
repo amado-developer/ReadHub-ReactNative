@@ -12,6 +12,10 @@ import {
   watchMagazineCollectionFetching,
   watchMagazineCollectionFetchingOnLogin
 } from './magazineCollection';
+import {watchSignUser} from './signup';
+import {watchEquipmentFetching, watchLoanEquipmentStarted,
+  watchInitialEquipmentLoanData,watchEquipmentLoanFetching,watchReturnEquipment} from './audiovisuals'
+
 function* mainSaga() {
   yield all([
     fork(watchLoginStarted),
@@ -26,6 +30,13 @@ function* mainSaga() {
     fork(watchRefreshTokenStarted),
     fork(watchMagazineCollectionFetching),
     fork(watchMagazineCollectionFetchingOnLogin),
+    fork(watchSignUser),
+    fork(watchEquipmentFetching),
+    fork(watchLoanEquipmentStarted),
+    fork(watchInitialEquipmentLoanData),
+    fork(watchEquipmentLoanFetching),
+    fork(watchReturnEquipment)
+
   ]);
 }
 

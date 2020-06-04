@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/signup';
+import * as selectors from '../../reducers';
+//import * as actions from '../../actions/signUp';
 
 const renderName = field => {
   
@@ -147,6 +149,12 @@ const signUp = props => {
   const {dispatch} = props;
   const {history} = props;
   const {SignUp} = props;
+  const {isSignup} = props
+  const {isSignedUp} = props
+  
+  if (isSignedUp){
+    ()=>history.push('/Home')
+  }
 
   return (
     <KeyboardAvoidingView 
@@ -199,12 +207,7 @@ const signUp = props => {
 
                 style={styles.button}
                 color={'white'}
-                onPress={handleSubmit(values => {
-                  dispatch(actions.startSignup(values.email, values.first_name, values.last_name,  
-                    values.age, values.gender, values.occupation,
-                    values.address_line1, values.address_line2, values.phone_number,
-                    values.password1, values.password2));
-                })}>
+                onPress={handleSubmit}>
 
                 <Text>Register!</Text>
           </TouchableOpacity>
@@ -216,14 +219,24 @@ const signUp = props => {
 };
 
 
-const mapStateToProps = state => {
-  return state;
-};
+export default connect(
+  (state) => ({
+    isSignup: selectors.getIsSignUp(state),
+    isSignedUp: selectors.isAuthenticated(state)
+  }),
+)(
+  reduxForm({
+    form: 'signup',
+    onSubmit({email, first_name, last_name,  age, gender, occupation,
+      address_line1, address_line2, phone_number,password1, password2}, dispatch){
+      dispatch(
+        actions.startSignup(email, first_name, last_name,  age, gender, occupation,
+          address_line1, address_line2, phone_number,password1, password2),
+      );
+    },
 
-const decoratedComponent = connect(mapStateToProps)(signUp);
-export default reduxForm({
-  form: 'signup',
-})(decoratedComponent);
+  })(signUp)
+);
 
 
 const styles = StyleSheet.create({

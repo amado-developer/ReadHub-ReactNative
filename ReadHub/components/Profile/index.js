@@ -17,6 +17,7 @@ import Test from './test';
 import * as actions from '../../actions/bookCollection';
 import * as magazineCollectionActions from '../../actions/magazineCollection'
 import Book from './book';
+import Magazine from './magazine'
 
 let isPressed = false;
 const profile = withRouter(
@@ -56,7 +57,7 @@ const profile = withRouter(
           />
         </TouchableOpacity>
         <Text style={styles.name}>
-          {info.first_name + ' ' + info.last_name}{' '}
+          {info.first_name + ' ' + info.last_name}
         </Text>
 
         <View
@@ -208,10 +209,20 @@ const profile = withRouter(
               onButtonMagazineCollectionUnPressed();
             }
           }}>
-            <Text>Press dude!</Text>
+            <Text>las magazines we!</Text>
           </TouchableOpacity>
-          {isMagazineCollectionPressed ? (console.log('It is Pressed!')) : (console.log('sorry buddy'))}
-        </View>
+          {isMagazineCollectionPressed ? (
+            <View>
+              {magazineCollection.map(id => (
+                <Magazine key={id} id={id} />
+              ))}
+            </View>
+          ) : (
+            <View />
+          )}
+          </View>
+  
+        
       </ScrollView>
     );
   },
