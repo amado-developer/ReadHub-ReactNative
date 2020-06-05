@@ -259,7 +259,10 @@ export default connect(
     onButtonMagazineCollectionUnPressed() {
       dispatch(magazineCollectionActions.unpressButton());
     },
-    
+
+    onMagazinePressed() {
+      dispatch(magazineCollectionActions.startFetchingCollection());
+    } 
   }),
 )(profile);
 

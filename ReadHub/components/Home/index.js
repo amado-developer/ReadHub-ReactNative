@@ -195,7 +195,6 @@ const home = withRouter( props => {
 });
 
 const mapStateToProps = state =>{
-  console.log(state);
   return state;
 };
 
