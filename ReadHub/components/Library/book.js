@@ -44,7 +44,7 @@ const book = ({
           <Text style={styles.detail}>Edition: {edition}</Text>
           <Text style={styles.detail}>Publisher: {publisher}</Text>
           <Text style={styles.detail}>isbn: {isbn}</Text>
-          <Text style={styles.detail}>Release Date: {release_date}</Text>
+          <Text style={styles.detail}>ke ke{release_date}</Text>
           <Text style={styles.detail}>quantity {quantity}</Text>
           {!cart.includes(id) ? (
           <TouchableOpacity onPress={() => onAddToCart()}>

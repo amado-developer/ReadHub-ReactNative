@@ -13,16 +13,36 @@ import * as audioActions from '../../actions/audiovisuals';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-native';
 import Logout from '../LogOutButton';
+
+
 const home = withRouter( props => {
   const {history} = props;
   const {dispatch} = props;
   return (
        <ScrollView style={{backgroundColor: '#F0F0F0'}} >
-         <View style={styles.logout}>
-            <Logout />
+         <View
+            style={{flex: 1, justifyContent: 'space-between', 
+            flexDirection: 'row', alignItems: 'flex-start', 
+            height: 75}}>
+              
+            <View style={styles.inputWrap}>
+              <View style={styles.logout}>
+                <Logout />
+              </View>
+            </View>
 
+            <View style={styles.inputWrap}>
+              <TouchableOpacity 
+                  style={styles.infoTouch}
+                   onPress={()=> history.push('/info')}>
+                <Image
+                  style={styles.info}
+                  source={require('../../Images/info.png')}>
+                </Image>
+              </TouchableOpacity>
+            </View>
+          </View>
 
-         </View>
          
           <View  style={styles.container} >
             <Image
@@ -32,15 +52,7 @@ const home = withRouter( props => {
           </View>
 
           <View
-            style={{
-              flex: 1,
-              //flexDirection: 'row',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              height: 250,
-              //backgroundColor:'red'
-            }}>
+            style={styles.showrow}>
             <View style={styles.inputWrap}>
 
             <TouchableOpacity style={styles.button} onPress={()=> history.push('/books')}>
@@ -70,15 +82,7 @@ const home = withRouter( props => {
           </View>
 
           <View
-            style={{
-              flex: 1,
-              //flexDirection: 'row',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              height: 250,
-              //backgroundColor:'red'
-            }}>
+            style={styles.showrow}>
             <View style={styles.inputWrap}>
 
             <TouchableOpacity style={styles.button} onPress={()=>{
@@ -110,15 +114,7 @@ const home = withRouter( props => {
             </View>
           </View>
           <View
-            style={{
-              flex: 1,
-              //flexDirection: 'row',
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              height: 250,
-              //backgroundColor:'red'
-            }}>
+            style={styles.showrow}>
             <View style={styles.inputWrap}>
 
             <TouchableOpacity style={styles.button} onPress={()=>history.push('/magazines')}>
@@ -135,7 +131,12 @@ const home = withRouter( props => {
             </View>
 
             <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/profile')}>
+            <TouchableOpacity 
+
+                style={styles.buttonRight} 
+                onPress={()=> history.push('/profile')}>
+
+
               <Text style={styles.text2}>
                 Profile
               </Text>
@@ -148,13 +149,7 @@ const home = withRouter( props => {
           </View>
 
           <View
-            style={{
-              flex: 1,
-              justifyContent: 'space-between',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              height: 300,
-            }}>
+            style={styles.showrow}>
 
           <View style={styles.inputWrap}>
             <TouchableOpacity style={styles.buttonRight} 
@@ -204,6 +199,31 @@ export default connect(mapStateToProps)(home);
 
 const styles = StyleSheet.create({
 
+  showrow:{
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    height: 250,
+    marginTop: -25
+
+  },
+
+  infoTouch:{
+  
+    height:50,
+    width: 50,
+    marginLeft: -190,
+    marginTop:10
+  
+  },
+
+  info:{
+    height:50,
+    width: 50,
+   
+  },
+
   returnBtn:{
     height: 125,
     width: 125,
@@ -213,9 +233,11 @@ const styles = StyleSheet.create({
   },
 
   logout:{
-    height:55, width: 60,
-     marginLeft:340,
-      marginTop:20
+    height:50,
+    width: 50,
+    marginLeft: 345,
+    marginTop:10
+    
   },
 
   buttonRight:{
@@ -289,11 +311,9 @@ const styles = StyleSheet.create({
 
   },
     container: {
-    //backgroundColor: 'red',
     marginTop: 10,
     marginRight: 25,
     marginLeft: 15,
-  
   },
 
 

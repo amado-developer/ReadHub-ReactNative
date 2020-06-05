@@ -18,6 +18,7 @@ import Library from './components/Library';
 import Loans from './components/Loans';
 import equipment from './components/audiovisuals';
 import returns from './components/returns';
+import info from './components/info'
 const {store, persistor} = configureStore();
 
 export default (App = () => (
@@ -37,6 +38,7 @@ export default (App = () => (
           <Route path="/loans" component={Loans} />
           <Route path="/audiovisuals" component={equipment}/>
           <Route path="/returns" component={returns} />
+          <Route path= "/info" component={info}/>
           
           {/* <Route path="/test" component={test} /> */}
         </View>
