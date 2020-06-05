@@ -17,10 +17,7 @@ const getProfilePicture = (onUpload, onError) => {
     title: 'Select Profile picture',
   };
 
-  /**
-   * The first arg is the options object for customization (it can also be null or omitted for default options),
-   * The second arg is the callback which sends object: response (more info in the API Reference)
-   */
+
   ImagePicker.showImagePicker(options, response => {
     if (response.didCancel) {
       onError('The user cancelled');

@@ -17,9 +17,14 @@ const home = withRouter( props => {
   const {history} = props;
   const {dispatch} = props;
   return (
-       <ScrollView >
-          <View  style={styles.container} >
+       <ScrollView style={{backgroundColor: '#F0F0F0'}} >
+         <View style={styles.logout}>
             <Logout />
+
+
+         </View>
+         
+          <View  style={styles.container} >
             <Image
               style={styles.image}
               source={require('../../Images/logo.png')}
@@ -58,7 +63,7 @@ const home = withRouter( props => {
               </Text>
                <Image
                 style={styles.imageIconRight}
-                source={require('../../Images/prestarLibro.png')}
+                source={require('../../Images/libraryother.png')}
                />
             </TouchableOpacity>
             </View>
@@ -86,7 +91,7 @@ const home = withRouter( props => {
 
                  <Image
                     style={styles.imageIcon}
-                    source={require('../../Images/esta.png')}
+                    source={require('../../Images/loanbook.png')}
                     />
                 </TouchableOpacity>
 
@@ -118,7 +123,7 @@ const home = withRouter( props => {
 
             <TouchableOpacity style={styles.button} onPress={()=>history.push('/magazines')}>
                 <Text style={styles.text}>
-                    Comprar revistas
+                    Buy Magazines
                  </Text>
 
                  <Image
@@ -136,14 +141,24 @@ const home = withRouter( props => {
               </Text>
                <Image
                 style={styles.imageIconRight}
-                source={require('../../Images/profile.jpeg')}
+                source={require('../../Images/profile.jpg')}
                />
             </TouchableOpacity>
             </View>
           </View>
 
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'space-between',
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              height: 300,
+            }}>
+
           <View style={styles.inputWrap}>
-            <TouchableOpacity style={styles.buttonRight} onPress={()=> history.push('/payment')}>
+            <TouchableOpacity style={styles.buttonRight} 
+            onPress={()=> history.push('/payment')}>
               <Text style={styles.text2}>
                 Payment
               </Text>
@@ -153,22 +168,26 @@ const home = withRouter( props => {
                 resizeMode='contain'
                />
             </TouchableOpacity>
+          </View>
 
-            <TouchableOpacity style={styles.buttonRight} onPress={()=> {
+          <View style={styles.inputWrap}>
+          <TouchableOpacity style={styles.buttonRight} onPress={()=> {
               dispatch(audioActions.startFetchingEquipmentLoans());
               history.push('/returns');
              
               }}>
               <Text style={styles.text2}>
-                RETURNS
+                Returns
               </Text>
                <Image
-                style={styles.imageIconRight}
-                //source={require('../../Images/return.png')}
+                style={styles.returnBtn}
+                source={require('../../Images/return.png')}
                 resizeMode='contain'
                />
             </TouchableOpacity>
-            </View>
+
+          </View>
+          </View>
 
         </ScrollView>
 
@@ -184,6 +203,21 @@ export default connect(mapStateToProps)(home);
 
 
 const styles = StyleSheet.create({
+
+  returnBtn:{
+    height: 125,
+    width: 125,
+    marginTop:10,
+    marginLeft: 25,
+
+  },
+
+  logout:{
+    height:55, width: 60,
+     marginLeft:340,
+      marginTop:20
+  },
+
   buttonRight:{
     height: 250,
     width: 160,
@@ -214,7 +248,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 0,
+    marginLeft: 15,
     marginBottom: 5,
 
   },
@@ -223,7 +257,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 50,
 
   },
   text3:{
@@ -247,20 +281,19 @@ const styles = StyleSheet.create({
     width: 160,
     marginTop: 50,
     marginLeft: 25,
-    //backgroundColor: 'blue'
+    
   },
   image: {
     width: 400,
     height: 100,
-    //marginRight:500,
-    //backgroundColor : 'blue'
+
   },
     container: {
     //backgroundColor: 'red',
-    marginTop: 100,
+    marginTop: 10,
     marginRight: 25,
     marginLeft: 15,
-   // backgroundColor: 'red'
+  
   },
 
 

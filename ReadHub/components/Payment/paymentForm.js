@@ -66,7 +66,19 @@ const paymentForm = props => {
     const {history} = props;
     const {dispatch} = props;
     return (
+      
       <View style={styles.container}>
+        <View style={styles.header}>
+            <TouchableOpacity
+                    style={styles.goBackButton}
+                    onPress={() => history.push('/payment')}>
+                <Image
+                    source={require('../../Images/goBackButton.png')}
+                    style={styles.backImage}/>
+            </TouchableOpacity>
+        
+            <Image source={require('../../Images/logo.png')} style={styles.logo} />
+        </View>
         <View style={styles.logo}>
           <Image
             style={styles.image}
@@ -118,6 +130,7 @@ const paymentForm = props => {
       width: 150,
       borderRadius: 10,
       marginLeft: 100,
+      marginTop:50
     },
   
     container: {
@@ -129,10 +142,11 @@ const paymentForm = props => {
       borderColor: 'black',
       borderWidth: 0.5,
       borderRadius: 5,
+      marginTop:50,
+      marginBottom: -10,
       height: 50,
       width: 250,
       marginLeft: 50,
-      marginBottom: 50,
       color: '#010F78',
     },
   
@@ -140,6 +154,33 @@ const paymentForm = props => {
       width: 250,
       height: 100,
       marginLeft: 55,
+    },
+    goBackButton: {
+      alignItems: 'center',
+      padding: 10,
+      width: 150,
+      borderRadius: 10,
+      marginLeft: 10,
+      width: 60,
+      marginTop: 20,
+    },
+    
+    logo: {
+      width: 275,
+      height: 75,
+    },
+  
+    backImage: {
+      width: 50,
+      height: 30,
+    },
+  
+    header: {
+      marginTop: -40,
+      marginLeft: -20,
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
     },
   });
   

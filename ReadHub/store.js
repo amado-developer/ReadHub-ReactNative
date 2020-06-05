@@ -12,7 +12,7 @@ export const configureStore = () => {
     {
       key: 'root',
       storage,
-      whitelist: ['login', 'profile', 'bookCollection', 'payment', 'loans', 'equipmentloans'],
+      whitelist: [''],
     },
     reducer,
   );
