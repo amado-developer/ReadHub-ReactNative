@@ -49,7 +49,7 @@ import {
   
         const pdfResponse = yield call(
           fetch,
-          `${API_BASE_URL}/magazines-pdf/get-magazine-pdf/?user=${userId}`,
+          `${API_BASE_URL}/magazine-pdf/get-magazine-pdf/?user=${userId}`,
           {
             method: 'GET',
             headers: {
@@ -58,6 +58,7 @@ import {
             },
           },
         );
+        
         if (pdfResponse.status === 200) {
           const jsonResult = yield pdfResponse.json();
           yield put(actions.completeFetchingPDF(jsonResult));

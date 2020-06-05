@@ -58,6 +58,7 @@ function* searchBooks(action) {
           },
         },
       );
+      console.log(pdfResponse);
       if (pdfResponse.status === 200) {
         const jsonResult = yield pdfResponse.json();
         yield put(actions.completeFetchingPDF(jsonResult));
