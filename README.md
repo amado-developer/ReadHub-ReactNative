@@ -31,6 +31,10 @@ Enter to de directory of the project
 ```
 cd yourpath\ReadHub-ReactNative\ReadHub\
 ```
+
+```
+npm install
+```
 Install library for icons
 
 ```
