@@ -208,8 +208,11 @@ const signUp = props => {
                 style={styles.button}
                 color={'white'}
                 onPress={handleSubmit}>
-
                 <Text>Register!</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button2} color={'white'} onPress={() => history.push("/")}>
+            <Text>Cancel!</Text>
           </TouchableOpacity>
           </ScrollView>
         </View>
@@ -292,6 +295,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginLeft: 125,
     marginTop: 35,
+    marginBottom: 10
+    
+
+  },
+  button2:{
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: 150,
+    borderRadius: 10,
+    marginLeft: 125,
     marginBottom: 40
     
 

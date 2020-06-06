@@ -78,7 +78,7 @@ const logIn = props => {
           <TouchableOpacity
           style={styles.button}
           color={'white'}
-          onPress={()=>history.push('/SignUp')}> 
+          onPress={()=>history.push("/SignUp")}> 
           <Text>Sign Up</Text>
         </TouchableOpacity>
     
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     width: 150,
     borderRadius: 10,
     marginLeft: 100,
+    marginBottom: 20,
   },
 
   container: {

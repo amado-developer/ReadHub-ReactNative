@@ -66,6 +66,7 @@ const loan = props => {
   const {cart} = props.equipmentLoanCart;
   if (cart.length > 0) {
     const {dispatch} = props;
+      Alert.alert('Loaned!', 'Equiment loaned!');
       dispatch(actions.startLoaningEquipment(cart));
     }
   else {

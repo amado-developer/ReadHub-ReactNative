@@ -39,7 +39,7 @@ const digitalBook = ({
           <Text style={styles.detail}>Author: {author}</Text>
           <Text style={styles.detail}>Language: {language}</Text>
           <Text style={styles.detail}>Edition: {edition}</Text>
-          <Text style={styles.detail}>Publisher: {publisher}la</Text>
+          <Text style={styles.detail}>Publisher: {publisher}</Text>
           <Text style={styles.detail}>DOI: {doi}</Text>
           <Text style={styles.detail}>Release Date: {release_date}</Text>
           <Text style={styles.detail}>Price: ${price}</Text>
@@ -175,6 +175,6 @@ const styles = StyleSheet.create({
   detail: {
     color: '#4D6066',
     fontFamily: 'Book Antiqua',
-    fontSize: 20,
+    fontSize: 15,
   },
 });

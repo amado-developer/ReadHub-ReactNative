@@ -39,11 +39,9 @@ export default (App = () => (
           <Route path="/audiovisuals" component={equipment}/>
           <Route path="/returns" component={returns} />
           <Route path= "/info" component={info}/>
-          
-          {/* <Route path="/test" component={test} /> */}
         </View>
       </NativeRouter>
-      <TokenRefresh reviewTime={85000}/>
+      <TokenRefresh reviewTime={1000}/>
     </PersistGate>
   </Provider>
 ));

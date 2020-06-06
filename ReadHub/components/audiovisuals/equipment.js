@@ -31,20 +31,16 @@ const equipment = ({
     <View style={styles.bookContainer}>
       <Text style={styles.title}>{name}</Text>
       <View style={styles.info}>
-        <View style={styles.imageView}>
-          <Image source={{uri: HOST + cover}} style={styles.image} />
-        </View>
         <View style={styles.bookDetail}>
           <Text style={styles.detail}>Name: {name}</Text>
           <Text style={styles.detail}>Type: {type}</Text>
           <Text style={styles.detail}>Release Date: {release_date}</Text>
           <Text style={styles.detail}>quantity {quantity}</Text>
           {!cart.includes(id) ? (
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity style={styles.button} onPress={() => {
             quantity !== 0 ? onAddToCart() : Alert.alert('Error', 'No available units');
-            
             }}>
-            <Text>Add to loan cart</Text>
+            <Text style={styles.buttonText}>Add to loan cart</Text>
           </TouchableOpacity>
           ) : (<TouchableOpacity onPress={() => onRemoveFromCart()}>
             <Text>Remove from loan cart</Text>
@@ -86,12 +82,13 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: '#0E49B5',
+    backgroundColor: '#A639E6',
     width: 150,
     height: 30,
     alignItems: 'center',
     marginTop: 10,
     borderRadius: 10,
+    marginBottom: 20,
   },
 
   removeButton: {
@@ -134,7 +131,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Book Antiqua',
     fontSize: 26,
     fontWeight: 'bold',
-    paddingLeft: 28,
+    paddingLeft: 130,
     paddingRight: 10,
     marginTop: 10,
   },
@@ -154,6 +151,7 @@ const styles = StyleSheet.create({
 
   bookDetail: {
     marginTop: 10,
+    marginLeft: 120
   },
 
   detail: {

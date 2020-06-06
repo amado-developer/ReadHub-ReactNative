@@ -15,7 +15,10 @@ const byId = (state = {}, action) => {
             return newState;
         }
         case types.FETCHING_EQUIPMENT_STARTED: {
-            return {}
+            return {};
+        }
+        case types.LOAN_EQUIPMENT_STARTED:{
+            return {};
         }
     }
     return state;
@@ -28,6 +31,10 @@ const order = (state = [], action) => {
 
         case types.FETCHING_EQUIPMENT_STARTED: {
             return []
+        }
+
+        case types.LOAN_EQUIPMENT_STARTED:{
+            return {};
         }
     }
     return state;

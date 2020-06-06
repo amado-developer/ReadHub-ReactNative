@@ -46,13 +46,13 @@ const book = ({
           <Text style={styles.detail}>ke ke{release_date}</Text>
           <Text style={styles.detail}>quantity {quantity}</Text>
           {!cart.includes(id) ? (
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity style = {styles.touch}onPress={() => {
             quantity !== 0 ? onAddToCart() : Alert.alert('Error', 'No available units');
             }}>
-            <Text>Add to loan cart</Text>
-          </TouchableOpacity>
-          ) : (<TouchableOpacity onPress={() => onRemoveFromCart()}>
-            <Text>Remove from loan cart</Text>
+            <Text style={styles.add}>Add to loan cart</Text>
+          </TouchableOpacity >
+          ) : (<TouchableOpacity onPress={() => onRemoveFromCart()} style = {styles.touch2}>
+            <Text style={styles.add2}>Remove from loan cart</Text>
           </TouchableOpacity>)}
         </View>
       </View>
@@ -75,7 +75,30 @@ export default connect(
   })
 )(book);
 
+
 const styles = StyleSheet.create({
+  touch2:{
+    backgroundColor: '#FFCCF3', 
+    width: 160,
+     height:20,
+     borderRadius:20
+
+  },
+  touch:{
+    backgroundColor: '#DFCEFF', 
+    width: 125,
+     height:20,
+     borderRadius:20
+
+  },
+  add2:{
+    marginLeft:10
+
+  },
+  add:{
+    marginLeft:14
+
+  },
   icon: {
     marginRight: 10,
   },
@@ -164,6 +187,6 @@ const styles = StyleSheet.create({
   detail: {
     color: '#4D6066',
     fontFamily: 'Book Antiqua',
-    fontSize: 20,
+    fontSize: 18,
   },
 });

@@ -1,6 +1,16 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {View, TouchableOpacity, Text, TextInput,StyleSheet,Image} from 'react-native';
+import {
+    View, 
+    TouchableOpacity, 
+    Text, TextInput,
+    StyleSheet,Image, 
+    KeyboardAvoidingView,
+    Keyboard,
+    TouchableWithoutFeedback,
+    Alert,
+} 
+from 'react-native';
 import {withRouter} from 'react-router-native'
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/payment';
@@ -9,7 +19,7 @@ const payment = withRouter(({history, cardInfo, onPress}) => {
     let card_holder = 'Card Holder:';
     let card_number = 'Card Number:';
     let exp_date = 'Exp Date:';
-    console.log('la card: ' + cardInfo.info)
+
 
     if(cardInfo.info.length > 0){
         card_holder = cardInfo.info[0].card_holder;
@@ -18,6 +28,8 @@ const payment = withRouter(({history, cardInfo, onPress}) => {
     }
     const [quantity, changeQuantity] = useState('');
     return(
+        <KeyboardAvoidingView behavior={Platform.OS == 'ios' ? 'padding' : null} style={styles.container} >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
         <View style={styles.header}>
             <TouchableOpacity
@@ -57,7 +69,7 @@ const payment = withRouter(({history, cardInfo, onPress}) => {
             </View>
             <View style={{backgroundColor:'#F1D3FF', 
             marginLeft:25, marginRight:25, height:250, 
-            borderRadius:25,  marginTop:10}}>
+            borderRadius:25,  marginTop:10,}}>
 
                 <View>
                 <Text style={styles.AddFounds}> Add Founds</Text>
@@ -70,7 +82,11 @@ const payment = withRouter(({history, cardInfo, onPress}) => {
                 style={{borderColor: 'black', borderWidth: 1, margin: 15}}
                 />
 
-                <TouchableOpacity onPress={() => onPress(quantity)} 
+                <TouchableOpacity onPress={() =>{
+                    changeQuantity('');
+                    Alert.alert('Great!', 'Founds Added!')
+                    onPress(quantity);
+                }} 
                 style={{backgroundColor: '#6B049B', 
                 height:50, width:200,
                 marginLeft: 75, borderRadius: 20, marginTop:15}}>
@@ -79,9 +95,9 @@ const payment = withRouter(({history, cardInfo, onPress}) => {
                 </TouchableOpacity>
             </View>
             </View>
-
-
-        </View>
+            </View>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     );
 });
 export default connect(
@@ -188,5 +204,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       flexWrap: 'nowrap',
     },
+
+    
   });
   
