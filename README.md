@@ -54,8 +54,23 @@ Install extra library
 ```
 npm install --save moment react-moment
 ```
+# CASES
+You have to change a configuration depending in which device you are going to run the app
+### Emulator
+No changes 
+### Physical Device
+Inside the folder
+```
+\ReadHub-ReactNative\ReadHub\Components\Config\index.js
+```
+You need to have  this variables
+**You need to add your IP DIRECTION**
+export const API_BASE_URL = 'http://yourIp:8000/api/v1'; \
+export const HOST = 'http://yourIp:8000'; \
 
-**Run App**
+and commented the other ones
+
+## Run App
 
 ```
 npx react-native run-android
