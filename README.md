@@ -1,5 +1,5 @@
 # ReadHub React-Native
-#VIDEO
+# VIDEO
 https://youtu.be/6e-ajnzqy0Y
 
 React-Native app for ReadHub / Redux project for the web course. UVG 2020
