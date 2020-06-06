@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/audiovisuals';
 import {withRouter} from 'react-router-native';
