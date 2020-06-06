@@ -15,9 +15,12 @@ const byId = (state = {}, action) => {
             return newState;
         }
         case types.RETURN_EQUIPMENT_COMPLETED: {
-               const newState = {...state};
-               delete newState[action.payload.equipment];
-            return newState;
+            const omit_state = omit(state, action.payload.equipment);
+            const newState = [...omit_state];
+
+            return {
+                newState
+            };
         }
         case types.FETCHING_LOAN_EQUIPMENT_COLLECTION_STARTED:{
             return {};

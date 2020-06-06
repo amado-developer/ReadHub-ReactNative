@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import * as types from '../../types/library';
+import omit from 'lodash/omit';
 
 const byId = (state = {}, action) => {
     switch(action.type){
@@ -14,9 +15,12 @@ const byId = (state = {}, action) => {
             return newState;
         }
         case types.RETURN_A_BOOK_COMPLETED: {
-               const newState = {...state};
-               delete newState[action.payload.book];
-            return newState;
+              const omit_state = omit(state, action.payload.book);
+              const newState = [...omit_state];
+
+              return {
+                  newState
+              };
         }
         case types.FETCHING_LOAN_COLLECTION_STARTED:{
             return {};

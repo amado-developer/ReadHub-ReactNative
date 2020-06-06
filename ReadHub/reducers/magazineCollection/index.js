@@ -98,7 +98,7 @@ export default combineReducers({
   pdfBook,
 });
 
-export const getMagazine = (state, id) => state.byId[id.id];
+export const getMagazine = (state, id) => state.byId[id];
 export const getMagazines= state =>
   state.order.map(id => getMagazine(state, id));
 export const getOrderedMagazines = state => state.order;

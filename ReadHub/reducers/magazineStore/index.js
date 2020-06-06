@@ -74,22 +74,11 @@ const error = (state = null, action) => {
   }
 };
 
-const magazineCollection = (state = [], action) => {
-  switch (action.type) {
-    case types.MAGAZINE_BUYING_COMPLETED: {
-      return [...state, action.payload.magazines];
-    }
-  }
-
-  return state;
-};
-
 export default combineReducers({
   byId,
   order,
   isFetching,
   error,
-  magazineCollection,
 });
 
 export const getMagazine = (state, id) => state.byId[id];

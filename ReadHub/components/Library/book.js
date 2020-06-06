@@ -30,7 +30,6 @@ const book = ({
   onRemoveFromCart,
 
 }) => {
-  console.log(cart);
   return (
     <View style={styles.bookContainer}>
       <Text style={styles.title}>{name}</Text>
@@ -47,7 +46,9 @@ const book = ({
           <Text style={styles.detail}>ke ke{release_date}</Text>
           <Text style={styles.detail}>quantity {quantity}</Text>
           {!cart.includes(id) ? (
-          <TouchableOpacity onPress={() => onAddToCart()}>
+          <TouchableOpacity onPress={() => {
+            quantity !== 0 ? onAddToCart() : Alert.alert('Error', 'No available units');
+            }}>
             <Text>Add to loan cart</Text>
           </TouchableOpacity>
           ) : (<TouchableOpacity onPress={() => onRemoveFromCart()}>

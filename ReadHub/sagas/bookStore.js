@@ -26,9 +26,10 @@ function* searchBooks(action) {
     const isFetching = yield select(selectors.isFetchingDigitalBooks);
     if (isAuth && isFetching) {
       const token = yield select(selectors.getToken);
+      const userId = yield select(selectors.getUserId);
       const response = yield call(
         fetch,
-        `${API_BASE_URL}/digital-books/search/?bookName=${bookName}`,
+        `${API_BASE_URL}/digital-books/search/?bookName=${bookName}&user=${userId}`,
         {
           method: 'GET',
           headers: {

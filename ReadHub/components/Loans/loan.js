@@ -4,11 +4,12 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/library';
 
-const loan = ({loanData={}, onPressed}) =>{
+const loan = ({loanData, onPressed}) =>{
     const {book} = loanData
+    console.log(book);
     return(
         <View>
-            <Text></Text>
+            <Text>{book.name}</Text>
             <TouchableOpacity onPress={() => onPressed()}>
                 <Text>Return Book</Text>
             </TouchableOpacity>

@@ -4,6 +4,7 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import * as selectors from '../../reducers';
 
 const book = ({digitalBook, pdfs}) => {
+  console.log(digitalBook.book.name);
   let PDFURL = '';
   const {book} = digitalBook;
   const range = pdfs.pdf.length;
@@ -17,19 +18,14 @@ const book = ({digitalBook, pdfs}) => {
   return (
     <View>
       <Text>
-        <Text style={styles.title}>{"'name'"}</Text>
-        <Text style={styles.detail}>Author: {'author'}</Text>
-        <Text style={styles.detail}>Language: {'language'}</Text>
-        <Text style={styles.detail}>Edition: {'edition'}</Text>
-        <Text style={styles.detail}>Publisher: {'publisher'}la</Text>
-        <Text style={styles.detail}>DOI: {'doi'}</Text>
-        <Text style={styles.detail}>Release Date: {'release_date'}</Text>
+        <Text style={styles.title}>{digitalBook.book.name}</Text>
+        <Text style={styles.detail}>Author: {digitalBook.book.author}</Text>
         <Text style={styles.detal}>{PDFURL}</Text>
       </Text>
     </View>
   );
 };
-export default connect((state, id) => ({
+export default connect((state, {id}) => ({
   digitalBook: selectors.getBookFromCollection(state, id),
   pdfs: selectors.getBookPDF(state),
 }))(book);

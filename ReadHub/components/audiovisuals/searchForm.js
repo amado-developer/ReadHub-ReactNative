@@ -62,6 +62,7 @@ const searchForm = withRouter(props => {
 });
 
 const loan = props => {
+
   const {cart} = props.equipmentLoanCart;
   if (cart.length > 0) {
     const {dispatch} = props;

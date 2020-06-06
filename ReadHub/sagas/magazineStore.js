@@ -27,9 +27,10 @@ function* searchMagazines(action) {
 
     if (isAuth) {
       const token = yield select(selectors.getToken);
+      const userId = yield select(selectors.getUserId)
       const response = yield call(
         fetch,
-        `${API_BASE_URL}/magazines/search/?magazineName=${magazineName}`,
+        `${API_BASE_URL}/magazines/search/?magazineName=${magazineName}&user=${userId}`,
         {
           method: 'GET',
           headers: {

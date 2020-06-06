@@ -25,6 +25,7 @@ const magazine = ({
   id,
   cart,
 }) => {
+  console.log(price);
   return (
     <View style={styles.bookContainer}>
       <Text style={styles.title}>{name}</Text>

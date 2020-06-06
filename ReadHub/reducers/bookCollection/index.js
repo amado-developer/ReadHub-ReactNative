@@ -98,7 +98,7 @@ export default combineReducers({
   pdfBook,
 });
 
-export const getDigitalBook = (state, id) => state.byId[id.id];
+export const getDigitalBook = (state, id) => state.byId[id];
 export const getDigitalBooks = state =>
   state.order.map(id => getDigitalBook(state, id));
 export const getOrderedBooks = state => state.order;

@@ -6,10 +6,10 @@ import * as actions from '../../actions/audiovisuals';
 
 const loanEquipment = ({LoanData={}, onPressed}) =>{
     const {equipment} = LoanData;
-    console.log(LoanData + "holi");
     return(
         <View>
-            <Text></Text>
+            <Text>{equipment.id}</Text>
+            <Text>{equipment.name}</Text>
             <TouchableOpacity onPress={() => onPressed()}>
                 <Text>Return Equipment</Text>
             </TouchableOpacity>
