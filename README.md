@@ -68,9 +68,9 @@ Inside the folder
 \ReadHub-ReactNative\ReadHub\Components\Config\index.js
 ```
 You need to have  this variables
-**You need to add your IP DIRECTION**
-export const API_BASE_URL = 'http://yourIp:8000/api/v1'; \
-export const HOST = 'http://yourIp:8000'; \
+**You need to add your IP DIRECTION** 
+export const API_BASE_URL = 'http://yourIp:8000/api/v1' 
+export const HOST = 'http://yourIp:8000'
 
 and commented the other ones
 
